@@ -24,8 +24,6 @@ public class telaLoginController {
             String login = fieldLogin.getText();
             String senha = passwordSenha.getText();
 
-            System.out.println("Login: " + login);
-            System.out.println("Senha: " + senha);
 
         });
     }

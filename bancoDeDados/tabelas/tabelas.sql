@@ -71,9 +71,9 @@ CREATE TABLE esquemaLocadora.tabelaSeguros (
 
 CREATE TABLE esquemaLocadora.tabelaLocacao_Ativa (
     idLocacao INT IDENTITY(1,1) PRIMARY KEY,
-    FK_idClienteLocacao INT IDENTITY(1,1),
-    FK_idSeguroLocacao INT IDENTITY(1,1),
-    FK_idCarroLocacao INT IDENTITY(1,1),
+    FK_idClienteLocacao INT NOT NULL,
+    FK_idSeguroLocacao INT NOT NULL,
+    FK_idCarroLocacao INT NOT NULL,
     dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     dataInicio date NOT NULL,
     dataFim date NOT NULL,
@@ -83,9 +83,9 @@ CREATE TABLE esquemaLocadora.tabelaLocacao_Ativa (
 
 CREATE TABLE esquemaLocadora.tabelaLocacao_Histórico (
     idLocacao INT IDENTITY(1,1) PRIMARY KEY,
-    FK_idClienteLocacao INT IDENTITY,
-    FK_idSeguroLocacao INT IDENTITY,
-    FK_idCarroLocacao INT IDENTITY,
+    FK_idClienteLocacao INT NOT NULL,
+    FK_idSeguroLocacao INT NOT NULL,
+    FK_idCarroLocacao INT NOT NULL,
     dataCriacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     dataInicio date NOT NULL,
     dataFim date NOT NULL,
@@ -97,19 +97,19 @@ CREATE TABLE esquemaLocadora.tabelaLocacao_Histórico (
 --Criando as relações entre as tabelas
 ALTER TABLE esquemaLocadora.tabelaClienteContatos ADD CONSTRAINT FK_tabelaClienteContatos
     FOREIGN KEY (FK_idClienteContatos)
-    REFERENCES esquemaLocadora.tabelaClientes (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
  
 ALTER TABLE esquemaLocadora.tabelaClienteEndereco ADD CONSTRAINT FK_tabelaClienteEndereco
     FOREIGN KEY (FK_idClienteEndereco)
-    REFERENCES esquemaLocadora.tabelaClientes (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
  
 ALTER TABLE esquemaLocadora.tabelaClienteCredenciais ADD CONSTRAINT FK_tabelaClienteCredenciais
     FOREIGN KEY (FK_idClienteCred)
-    REFERENCES esquemaLocadora.tabelaClientes (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
  
 ALTER TABLE esquemaLocadora.tabelaLocacao_Ativa ADD CONSTRAINT FK_tabelaLocacao_AtivaCliente
     FOREIGN KEY (FK_idClienteLocacao)
-    REFERENCES esquemaLocadora.tabelaClientes (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
  
 ALTER TABLE esquemaLocadora.tabelaLocacao_Ativa ADD CONSTRAINT FK_tabelaLocacao_AtivaSeguro
     FOREIGN KEY (FK_idSeguroLocacao)
