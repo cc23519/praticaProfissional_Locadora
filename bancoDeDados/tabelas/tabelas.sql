@@ -14,6 +14,12 @@ CREATE TABLE esquemaLocadora.tabelaColaborador (
     tipoAcesso varchar(10) NOT NULL
 );
 
+CREATE TABLE esquemaLocadora.tabelaColaboradorCred (
+    FK_idColaborador INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    usuarioColab varchar(15) NOT NULL UNIQUE,
+    senhaColab varchar(60) NOT NULL,
+);
+
 CREATE TABLE esquemaLocadora.tabelaCliente (
     idClientes INT IDENTITY(1,1) PRIMARY KEY,
     nomeCliente varchar(30) NOT NULL,
@@ -112,3 +118,7 @@ ALTER TABLE esquemaLocadora.tabelaLocacao_Ativa ADD CONSTRAINT FK_tabelaLocacao_
 ALTER TABLE esquemaLocadora.tabelaLocacao_Ativa ADD CONSTRAINT FK_tabelaLocacao_AtivaCarro
     FOREIGN KEY (FK_idCarroLocacao)
     REFERENCES esquemaLocadora.tabelaCarro (idCarro);
+
+ALTER TABLE esquemaLocadora.tabelaColaboradorCred ADD CONSTRAINT FK_tabelaColaboradorCred_3
+    FOREIGN KEY (FK_idColaborador)
+    REFERENCES esquemaLocadora.tabelaColaborador (idColaborador);
