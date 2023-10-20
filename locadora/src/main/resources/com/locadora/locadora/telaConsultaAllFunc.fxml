@@ -55,9 +55,9 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="38.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <ImageView fitHeight="33.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@imagens/locacarLogoPNG.png" />
+                  <Image url="@imagens/logoVoyage.png" />
                </image>
             </ImageView>
             <Label text="Consulta" GridPane.columnIndex="1">
