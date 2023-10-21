@@ -4,6 +4,7 @@
  */
 package com.locadora.locadora;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,13 +18,13 @@ public class telaLoginController {
 
     @FXML
     private Button buttonEntrar;
-
+    
+    
     @FXML
     private void initialize() {
         buttonEntrar.setOnAction(event -> {
             String login = fieldLogin.getText();
             String senha = passwordSenha.getText();
-
 
         });
     }

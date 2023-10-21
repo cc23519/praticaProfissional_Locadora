@@ -213,4 +213,27 @@
          </children>
       </Pane>
    </top>
+   <bottom>
+      <GridPane style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" prefWidth="51.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="664.0" minWidth="10.0" prefWidth="654.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="17.0" prefWidth="43.0" text="Status:" textFill="WHITE">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label disable="true" prefHeight="17.0" prefWidth="639.0" text="..." textFill="WHITE" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+   </bottom>
 </BorderPane>

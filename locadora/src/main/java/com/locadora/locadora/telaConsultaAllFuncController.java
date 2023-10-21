@@ -4,12 +4,13 @@
  */
 package com.locadora.locadora;
 
-import javafx.fxml.FXML;
-import java.io.IOException;
-import java.sql.Connection;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class telaConsultaAllFuncController {
-    
+public class telaConsultaAllFuncController implements Initializable {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Inicialização da nova tela
+    }
 }

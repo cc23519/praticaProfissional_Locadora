@@ -50,7 +50,7 @@ public class telaErroBancoController {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        stage.setTitle("LocaCar");
+                        stage.setTitle("Voyage - Sistema Interno");
                         stage.setScene(scene);
                         stage.show();
                     } else {
