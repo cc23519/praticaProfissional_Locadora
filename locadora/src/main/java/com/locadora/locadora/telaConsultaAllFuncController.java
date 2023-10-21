@@ -11,6 +11,6 @@ import java.util.ResourceBundle;
 public class telaConsultaAllFuncController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Inicialização da nova tela
+        
     }
 }

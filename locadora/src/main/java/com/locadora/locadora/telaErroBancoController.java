@@ -37,7 +37,7 @@ public class telaErroBancoController {
             erroProgressBar.setVisible(true);
 
             Thread conexaoThread = new Thread(() -> {
-                Connection connection = com.locadora.locadora.ClassePrincipal.criarConexaoBancoDados();
+                Connection connection = com.locadora.locadora.criarConexaoBanco.criarConexaoBancoDados();
 
                 javafx.application.Platform.runLater(() -> {
                     if (connection != null) {

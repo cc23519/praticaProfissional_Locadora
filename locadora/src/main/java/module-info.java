@@ -5,4 +5,5 @@ module com.locadora.locadora {
 
     opens com.locadora.locadora to javafx.fxml;
     exports com.locadora.locadora;
+    requires jbcrypt;
 }
