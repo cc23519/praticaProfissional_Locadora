@@ -18,7 +18,7 @@ public class ClassePrincipal extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(ClassePrincipal.class.getResource("telaLogin.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setResizable(false);
-            stage.setTitle("LocaCar");
+            stage.setTitle("Voyage - Sistema do Funcionário");
             stage.setScene(scene);
             stage.show();
         } else {

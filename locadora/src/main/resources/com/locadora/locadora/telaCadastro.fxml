@@ -24,11 +24,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaCadastroController">
    <center>
       <Accordion BorderPane.alignment="CENTER">
         <panes>
-          <TitledPane animated="false" text="Carros">
+          <TitledPane fx:id="telaCarros" animated="false" text="Carros">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -52,7 +52,7 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="298.0" />
+                                    <TextField fx:id="inputModeloCarro" prefHeight="25.0" prefWidth="298.0" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="2">
@@ -62,7 +62,7 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField promptText="20xx" />
+                                    <TextField fx:id="inputAnoCarro" promptText="20xx" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="1">
@@ -72,7 +72,7 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField promptText="xxxxxxx" />
+                                    <TextField fx:id="inputPlacaCarro" promptText="xxxxxxx" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="3">
@@ -82,7 +82,7 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField promptText="xxxxxxxxxxxxxxxxx" />
+                                    <TextField fx:id="inputChassiCarro" promptText="xxxxxxxxxxxxxxxxx" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="4">
@@ -92,18 +92,18 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="154.0" promptText="xx,xx" />
+                                    <TextField fx:id="inputPrecoDiariaCarro" prefHeight="25.0" prefWidth="154.0" promptText="xx,xx" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="5">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Criar Carro" />
+                                    <Button fx:id="buttonGerarCarro" mnemonicParsing="false" text="Criar Carro" />
                                     <Label text="ID do Carro gerado: ">
                                        <padding>
                                           <Insets left="25.0" />
                                        </padding>
                                     </Label>
-                                    <Label text="-" />
+                                    <Label fx:id="labelIdCarro" text="-" />
                                  </children>
                               </TextFlow>
                            </children>
@@ -112,7 +112,7 @@
                   </AnchorPane>
                </content>
           </TitledPane>
-            <TitledPane animated="false" text="Seguros">
+            <TitledPane fx:id="telaSeguro" animated="false" text="Seguros">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -134,7 +134,7 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="279.0" promptText="Ex. Seguro para passageiros" />
+                                    <TextField fx:id="inputTipoSeguro" prefHeight="25.0" prefWidth="279.0" promptText="Ex. Seguro para passageiros" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="2">
@@ -144,7 +144,7 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextArea prefHeight="86.0" prefWidth="200.0" />
+                                    <TextArea fx:id="inputDescricaoSeguro" prefHeight="86.0" prefWidth="200.0" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="1">
@@ -154,18 +154,18 @@
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
-                                    <TextField promptText="xx,xx" />
+                                    <TextField fx:id="inputPrecoSeguro" promptText="xx,xx" />
                                  </children>
                               </TextFlow>
                               <TextFlow GridPane.rowIndex="3">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Criar Seguro" />
+                                    <Button fx:id="buttonGerarSeguro" mnemonicParsing="false" text="Criar Seguro" />
                                     <Label text="ID do seguro gerado: ">
                                        <padding>
                                           <Insets left="25.0" right="10.0" />
                                        </padding>
                                     </Label>
-                                    <Label text="-">
+                                    <Label fx:id="labelIdSeguro" text="-">
                                        <padding>
                                           <Insets right="10.0" />
                                        </padding>
@@ -228,7 +228,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <Label disable="true" prefHeight="17.0" prefWidth="639.0" text="..." textFill="WHITE" GridPane.columnIndex="1">
+            <Label fx:id="labelStatus" disable="true" prefHeight="17.0" prefWidth="639.0" text="..." textFill="WHITE" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
