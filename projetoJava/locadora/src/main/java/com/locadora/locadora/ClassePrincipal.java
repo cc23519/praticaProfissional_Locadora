@@ -15,18 +15,13 @@ public class ClassePrincipal extends Application {
         Connection connection = com.locadora.locadora.criarConexaoBanco.criarConexaoBancoDados();
 
         if (connection != null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(ClassePrincipal.class.getResource("telaLogin.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setResizable(false);
-            stage.setTitle("Voyage - Sistema do Funcionário");
-            stage.setScene(scene);
-            stage.show();
+            String tela = "telaLogin.fxml";
+            abrirTelas abrirTelas = new abrirTelas();
+            abrirTelas.abrirTela(tela, "Voyage - Sistema do Funcionário");
         } else {
-            FXMLLoader fxmlLoader = new FXMLLoader(ClassePrincipal.class.getResource("erroBancoDeDados.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Erro de Conexão");
-            stage.setScene(scene);
-            stage.show();
+            String tela = "erroBancoDeDados.fxml";
+            abrirTelas abrirTelas = new abrirTelas();
+            abrirTelas.abrirTela(tela, "Erro de Conexão");
         }
     }
 

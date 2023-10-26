@@ -39,12 +39,13 @@ public class telaLoginController {
             String login = fieldLogin.getText();
             String senha = passwordSenha.getText();
             
-            if (autenticarUsuario(login, senha)) {
+            autenticarUsuario autenticarUsuario = new autenticarUsuario();
+            if (autenticarUsuario.autenticarUsuario(login, senha)) {
                 Stage telaLoginStage = (Stage) buttonEntrar.getScene().getWindow();
                 telaLoginStage.close();
                 abrirTelas abrirTelas = new abrirTelas();
                 String tela = "telaCadastro.FXML";
-                abrirTelas.abrirTela(tela);
+                abrirTelas.abrirTela(tela, "Voyage - Cadastrar Seguros e Carros");
                 System.out.println("Autenticação bem-sucedida");
             } else {
                 Alert alert = new Alert(AlertType.ERROR);
@@ -55,37 +56,6 @@ public class telaLoginController {
             }
         });
     }
-    
-private boolean autenticarUsuario(String username, String senha) {
-    criarConexaoBanco criarConexaoBanco = new criarConexaoBanco();
-    Connection conn = criarConexaoBancoDados();
-
-    if (conn != null) {
-        String sql = "SELECT senhaColab FROM esquemaLocadora.tabelaColaboradorCred WHERE usuarioColab = ?";
-
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                String senhaDoBanco = rs.getString("senhaColab");
-
-                if (BCrypt.checkpw(senha, senhaDoBanco)) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    return false;
-}
 }
 
 

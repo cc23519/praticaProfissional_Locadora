@@ -2,6 +2,7 @@ com\locadora\locadora\abrirTelas.class
 com\locadora\locadora\criarConexaoBanco.class
 com\locadora\locadora\ClassePrincipal.class
 com\locadora\locadora\telaConsultaAllFuncController.class
+com\locadora\locadora\autenticarUsuario.class
 com\locadora\locadora\telaCadastroColaboradoresController.class
 com\locadora\locadora\inserirCarro.class
 com\locadora\locadora\telaLoginController.class

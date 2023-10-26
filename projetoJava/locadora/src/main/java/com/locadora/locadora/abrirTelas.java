@@ -15,13 +15,14 @@ import javafx.stage.Stage;
  * @author u23519
  */
 public class abrirTelas {
-        public void abrirTela(String nomedocumento) {
+        public void abrirTela(String nomedocumento, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(nomedocumento));
             Parent root = loader.load();
             Stage novaTela = new Stage();
-            novaTela.setTitle("VOYAGE - Consulta de dados");
+            novaTela.setTitle(titulo);
             novaTela.setScene(new Scene(root));
+            novaTela.setResizable(false);
             novaTela.show();
         } catch (IOException e) {
             e.printStackTrace();
