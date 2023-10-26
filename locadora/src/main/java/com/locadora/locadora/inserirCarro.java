@@ -6,39 +6,36 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class inserirCarro {
-public int inserirCarro(String nome, String sobrenome, String tipoAcesso, String usuarioColab, String senha) {
-    String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
-    int idColaborador = -1;
+public int inserirCarro(Integer chassi, String modelo, String placa, Integer anocarro, Float preco) {
+    int idCarro = -1;
 
-    String sqlColaborador = "INSERT INTO esquemaLocadora.tabelaColaborador (nomeColab, sobrenomeColab, tipoAcesso) VALUES (?, ?, ?)";
-    String sqlCredencial = "INSERT INTO esquemaLocadora.tabelaColaboradorCred (usuarioColab, senhaColab) VALUES (?, ?)";
+    String sqlCarro = "INSERT INTO esquemaLocadora.tabelaCarro(chassiCarro, modeloCarro, placaCarro, anoCarro, precoDiaria_Carro, status) VALUES(?, ?, ?, ?, ?, 'Disponivel')";
 
     try (Connection conn = criarConexaoBancoDados();
-         PreparedStatement stmtColaborador = conn.prepareStatement(sqlColaborador, Statement.RETURN_GENERATED_KEYS);
-         PreparedStatement stmtCredencial = conn.prepareStatement(sqlCredencial)) {
+         PreparedStatement stmtCarro = conn.prepareStatement(sqlCarro, Statement.RETURN_GENERATED_KEYS)) {
 
-        stmtColaborador.setString(1, nome);
-        stmtColaborador.setString(2, sobrenome);
-        stmtColaborador.setString(3, tipoAcesso);
-        stmtColaborador.executeUpdate();
+        stmtCarro.setInt(1, chassi);
+        stmtCarro.setString(2, modelo);
+        stmtCarro.setString(3, placa);
+        stmtCarro.setInt(4, anocarro);
+        stmtCarro.setFloat(5, preco);
 
-        ResultSet generatedKeys = stmtColaborador.getGeneratedKeys();
-        if (generatedKeys.next()) {
-            idColaborador = generatedKeys.getInt(1);
+        int affectedRows = stmtCarro.executeUpdate();
+
+        if (affectedRows == 0) {
+            throw new SQLException("A inserção falhou, nenhum registro foi adicionado.");
         }
 
-        if (idColaborador != -1) {
-            stmtCredencial.setString(1, usuarioColab);
-            stmtCredencial.setString(2, senhaHash);
-            stmtCredencial.executeUpdate();
+        ResultSet generatedKeys = stmtCarro.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            idCarro = generatedKeys.getInt(1);
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
 
-    return idColaborador;
+    return idCarro;
 }
 }

@@ -40,7 +40,11 @@ public class telaLoginController {
             String senha = passwordSenha.getText();
             
             if (autenticarUsuario(login, senha)) {
-                abrirTelaConsulta();
+                Stage telaLoginStage = (Stage) buttonEntrar.getScene().getWindow();
+                telaLoginStage.close();
+                abrirTelas abrirTelas = new abrirTelas();
+                String tela = "telaCadastro.FXML";
+                abrirTelas.abrirTela(tela);
                 System.out.println("Autenticação bem-sucedida");
             } else {
                 Alert alert = new Alert(AlertType.ERROR);
@@ -82,23 +86,6 @@ private boolean autenticarUsuario(String username, String senha) {
     }
     return false;
 }
-
-
-    private void abrirTelaConsulta() {
-        try {
-            Stage telaLoginStage = (Stage) buttonEntrar.getScene().getWindow();
-            telaLoginStage.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("telaCadastroColaboradores.fxml"));
-            Parent root = loader.load();
-            telaCadastroColaboradoresController controller = loader.getController();
-            Stage novaTela = new Stage();
-            novaTela.setTitle("VOYAGE - Consulta de dados");
-            novaTela.setScene(new Scene(root));
-            novaTela.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-} 
+}
 
 

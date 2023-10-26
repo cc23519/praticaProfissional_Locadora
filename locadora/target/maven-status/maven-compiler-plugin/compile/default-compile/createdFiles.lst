@@ -1,9 +1,12 @@
-com\locadora\locadora\ClassePrincipalController.class
+com\locadora\locadora\abrirTelas.class
 com\locadora\locadora\criarConexaoBanco.class
 com\locadora\locadora\ClassePrincipal.class
 com\locadora\locadora\telaConsultaAllFuncController.class
 com\locadora\locadora\telaCadastroColaboradoresController.class
+com\locadora\locadora\inserirCarro.class
 com\locadora\locadora\telaLoginController.class
+com\locadora\locadora\inserirSeguro.class
+com\locadora\locadora\telaCadastroController.class
 module-info.class
 com\locadora\locadora\telaErroBancoController.class
 com\locadora\locadora\inserirColaborador.class

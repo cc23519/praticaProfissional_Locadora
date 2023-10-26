@@ -13,35 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1049.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaConsultaAllFuncController">
-   <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Carros" textAlignment="RIGHT" VBox.vgrow="SOMETIMES">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Clientes" textAlignment="RIGHT" VBox.vgrow="SOMETIMES">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Seguros" textAlignment="RIGHT" VBox.vgrow="SOMETIMES">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Locações" textAlignment="RIGHT" VBox.vgrow="SOMETIMES">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
@@ -68,4 +39,50 @@
          </children>
       </GridPane>
    </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Clientes">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content>
+            </Tab>
+          <Tab text="Seguro">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content>
+            </Tab>
+            <Tab text="Carros">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content>
+            </Tab>
+            <Tab text="Locações">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
 </BorderPane>

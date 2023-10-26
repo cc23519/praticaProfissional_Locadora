@@ -9,36 +9,30 @@ import java.sql.Statement;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class inserirSeguro {
-public int inserirSeguro(String nome, String sobrenome, String tipoAcesso, String usuarioColab, String senha) {
-    String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
-    int idColaborador = -1;
+public int inserirSeguro(String tipo, String descricao, Float preco) {
+    int idSeguro = -1;
 
-    String sqlColaborador = "INSERT INTO esquemaLocadora.tabelaColaborador (nomeColab, sobrenomeColab, tipoAcesso) VALUES (?, ?, ?)";
-    String sqlCredencial = "INSERT INTO esquemaLocadora.tabelaColaboradorCred (usuarioColab, senhaColab) VALUES (?, ?)";
+    String sqlSeguro = "INSERT INTO esquemaLocadora.tabelaSeguros(tipoSeguro, descricaoSeguro, precoSeguro) VALUES(?, ?, ?)";
 
     try (Connection conn = criarConexaoBancoDados();
-         PreparedStatement stmtColaborador = conn.prepareStatement(sqlColaborador, Statement.RETURN_GENERATED_KEYS);
-         PreparedStatement stmtCredencial = conn.prepareStatement(sqlCredencial)) {
+         PreparedStatement stmtSeguros = conn.prepareStatement(sqlSeguro, Statement.RETURN_GENERATED_KEYS)){
 
-        stmtColaborador.setString(1, nome);
-        stmtColaborador.setString(2, sobrenome);
-        stmtColaborador.setString(3, tipoAcesso);
-        stmtColaborador.executeUpdate();
+        stmtSeguros.setString(1, tipo);
+        stmtSeguros.setString(2, descricao);
+        stmtSeguros.setFloat(3, preco);
+        stmtSeguros.executeUpdate();
 
-        ResultSet generatedKeys = stmtColaborador.getGeneratedKeys();
+        ResultSet generatedKeys = stmtSeguros.getGeneratedKeys();
         if (generatedKeys.next()) {
-            idColaborador = generatedKeys.getInt(1);
+            idSeguro = generatedKeys.getInt(1);
         }
 
-        if (idColaborador != -1) {
-            stmtCredencial.setString(1, usuarioColab);
-            stmtCredencial.setString(2, senhaHash);
-            stmtCredencial.executeUpdate();
+        if (idSeguro != -1) {
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
 
-    return idColaborador;
+    return idSeguro;
 }
 }
