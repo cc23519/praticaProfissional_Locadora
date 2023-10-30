@@ -4,15 +4,15 @@
 CREATE VIEW VconsultaClientes AS
 SELECT 
     c.idClientes,
-    CONCAT(c.nomeClientes, ' ', c.sobrenomeCliente) AS NomeCompleto,
+    CONCAT(c.nomeCliente, ' ', c.sobrenomeCliente) AS NomeCompleto,
     c.cpfCliente,
     t.tipoTelefone,
     CONCAT(t.dddTelefone, ' ', t.numeroTelefone) AS contatoCliente,
     CONCAT(e.ruaCliente, ', ',e.numeroCliente,', ',e.bairroCliente,', ',e.complemento) AS enderecoCliente,
     CONCAT(e.cidadeCliente, ', ', e.estadoCliente, ', ', e.cepCliente)
-FROM tabelaClientes c
-JOIN tabelaClienteContatos t ON c.idClientes = t.idClientes
-JOIN tabelaClienteEndereco e ON c.idClientes = e.idClientes;
+FROM esquemaLocadora.tabelaCliente c
+JOIN esquemaLocadora.tabelaClienteContatos t ON c.idClientes = t.FK_idClienteContatos
+JOIN esquemaLocadora.tabelaClienteEndereco e ON c.idClientes = e.FK_idClienteEndereco;
 
 -- CONSULTAR DADOS DE FUNCIONÁRIOS
 CREATE VIEW VconsultaFuncionarios AS
