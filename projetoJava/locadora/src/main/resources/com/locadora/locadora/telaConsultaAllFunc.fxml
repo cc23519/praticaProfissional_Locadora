@@ -42,43 +42,76 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Clientes">
+          <Tab fx:id="tabCliente" text="Clientes">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tabelaCliente" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="columnidClientes" editable="false" prefWidth="57.0" text="ID" />
+                      <TableColumn fx:id="columnnomeCliente" editable="false" prefWidth="246.0" text="Nome" />
+                        <TableColumn fx:id="columncpfCliente" editable="false" prefWidth="136.0" text="CPF" />
+                        <TableColumn fx:id="columntipoCliente" editable="false" prefWidth="128.0" text="Tipo Telefone" />
+                        <TableColumn fx:id="columntelefoneCliente" editable="false" prefWidth="129.0" text="Telefone" />
+                        <TableColumn fx:id="columnendereco1Cliente" editable="false" prefWidth="180.0" text="Endereço 1" />
+                        <TableColumn fx:id="columnendereco2Cliente" prefWidth="163.0" text="Endereço 2" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
-          <Tab text="Seguro">
+          <Tab fx:id="tabCarro" text="Carros">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tabelaCarro" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="columnidCarro" editable="false" prefWidth="58.0" text="ID" />
+                      <TableColumn fx:id="columnmodeloCarro" editable="false" prefWidth="197.0" text="Modelo" />
+                        <TableColumn fx:id="columnplacaCarro" editable="false" prefWidth="130.0" text="Placa" />
+                        <TableColumn fx:id="columnchassiCarro" editable="false" prefWidth="186.0" text="Chassi" />
+                        <TableColumn fx:id="columnvalorCarro" editable="false" prefWidth="113.0" text="Valor (Dia)" />
+                        <TableColumn fx:id="columnstatusCarro" editable="false" prefWidth="153.0" text="Se encontra:" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
-            <Tab text="Carros">
+            <Tab fx:id="tabSeguro" text="Seguros">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tabelaSeguro" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="columnidSeguro" editable="false" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="columntipoSeguro" editable="false" prefWidth="157.0" text="Tipo Seguro" />
+                        <TableColumn fx:id="columnPrecoSeguro" editable="false" prefWidth="119.0" text="Preço (Diaria)" />
+                        <TableColumn fx:id="columndescricaoSeguro" editable="false" prefWidth="688.0" text="Descriçao do seguro" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
-            <Tab text="Locações">
+            <Tab fx:id="tabLocacaoAtiva" text="Locações ativas">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tableLocacaoA" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn fx:id="columnidLocacaoA" prefWidth="67.0" text="ID" />
+                      <TableColumn fx:id="columnnomeLocacaoA" prefWidth="178.0" text="Nome Cliente" />
+                        <TableColumn fx:id="columnseguroLocacaoA" minWidth="0.0" prefWidth="125.0" text="Seguro" />
+                        <TableColumn fx:id="columnmodeloLocacaoA" prefWidth="210.0" text="Modelo Carro" />
+                        <TableColumn fx:id="columndatacriacaoLocacaoA" prefWidth="135.0" text="Data Criaçao" />
+                        <TableColumn fx:id="columndatainicioLocacaoA" prefWidth="124.0" text="Data de início" />
+                        <TableColumn fx:id="columndatafinalLocacaoA" minWidth="9.0" prefWidth="114.0" text="Data Final" />
+                        <TableColumn fx:id="columnprecoLocacaoA" minWidth="8.0" prefWidth="86.0" text="Valor total" />
                     </columns>
+                  </TableView>
+               </content>
+            </Tab>
+            <Tab fx:id="tabLocacaoI" text="Locações inativas">
+               <content>
+                  <TableView fx:id="tableLocacaoI" prefHeight="200.0" prefWidth="200.0">
+                     <columns>
+                        <TableColumn fx:id="columnidLocacaoI" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="columnnomeLocacaoI" prefWidth="179.0" text="Nome Cliente" />
+                        <TableColumn fx:id="columnseguroLocacaoI" prefWidth="151.0" text="Seguro" />
+                        <TableColumn fx:id="columnmodeloLocacaoI" prefWidth="171.0" text="Modelo Carro" />
+                        <TableColumn fx:id="columndatacriacaoLocacaoI" prefWidth="120.0" text="Data Criaçao" />
+                        <TableColumn fx:id="columndatainicioLocacaoI" prefWidth="114.0" text="Data de início" />
+                        <TableColumn fx:id="columndatafinalLocacaoI" prefWidth="109.0" text="Data Final" />
+                        <TableColumn fx:id="columnprecoLocacaoI" prefWidth="120.0" text="Valor da Locação" />
+                     </columns>
                   </TableView>
                </content>
             </Tab>
