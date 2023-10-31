@@ -12,110 +12,115 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1049.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaConsultaAllFuncController">
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
-   <top>
-      <GridPane prefHeight="33.0" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="511.0" minWidth="10.0" prefWidth="99.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="975.0" minWidth="10.0" prefWidth="940.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ImageView fitHeight="33.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <image>
-                  <Image url="@imagens/logoVoyage.png" />
-               </image>
-            </ImageView>
-            <Label text="Consulta" GridPane.columnIndex="1">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </GridPane>
-   </top>
-   <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab fx:id="tabCliente" text="Clientes">
-               <content>
-                  <TableView fx:id="tabelaCliente" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="columnidClientes" editable="false" prefWidth="57.0" text="ID" />
-                      <TableColumn fx:id="columnnomeCliente" editable="false" prefWidth="246.0" text="Nome" />
-                        <TableColumn fx:id="columncpfCliente" editable="false" prefWidth="136.0" text="CPF" />
-                        <TableColumn fx:id="columntipoCliente" editable="false" prefWidth="128.0" text="Tipo Telefone" />
-                        <TableColumn fx:id="columntelefoneCliente" editable="false" prefWidth="129.0" text="Telefone" />
-                        <TableColumn fx:id="columnendereco1Cliente" editable="false" prefWidth="180.0" text="Endereço 1" />
-                        <TableColumn fx:id="columnendereco2Cliente" prefWidth="163.0" text="Endereço 2" />
-                    </columns>
-                  </TableView>
-               </content>
-            </Tab>
-          <Tab fx:id="tabCarro" text="Carros">
-               <content>
-                  <TableView fx:id="tabelaCarro" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="columnidCarro" editable="false" prefWidth="58.0" text="ID" />
-                      <TableColumn fx:id="columnmodeloCarro" editable="false" prefWidth="197.0" text="Modelo" />
-                        <TableColumn fx:id="columnplacaCarro" editable="false" prefWidth="130.0" text="Placa" />
-                        <TableColumn fx:id="columnchassiCarro" editable="false" prefWidth="186.0" text="Chassi" />
-                        <TableColumn fx:id="columnvalorCarro" editable="false" prefWidth="113.0" text="Valor (Dia)" />
-                        <TableColumn fx:id="columnstatusCarro" editable="false" prefWidth="153.0" text="Se encontra:" />
-                    </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab fx:id="tabSeguro" text="Seguros">
-               <content>
-                  <TableView fx:id="tabelaSeguro" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="columnidSeguro" editable="false" prefWidth="75.0" text="ID" />
-                      <TableColumn fx:id="columntipoSeguro" editable="false" prefWidth="157.0" text="Tipo Seguro" />
-                        <TableColumn fx:id="columnPrecoSeguro" editable="false" prefWidth="119.0" text="Preço (Diaria)" />
-                        <TableColumn fx:id="columndescricaoSeguro" editable="false" prefWidth="688.0" text="Descriçao do seguro" />
-                    </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab fx:id="tabLocacaoAtiva" text="Locações ativas">
-               <content>
-                  <TableView fx:id="tableLocacaoA" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="columnidLocacaoA" prefWidth="67.0" text="ID" />
-                      <TableColumn fx:id="columnnomeLocacaoA" prefWidth="178.0" text="Nome Cliente" />
-                        <TableColumn fx:id="columnseguroLocacaoA" minWidth="0.0" prefWidth="125.0" text="Seguro" />
-                        <TableColumn fx:id="columnmodeloLocacaoA" prefWidth="210.0" text="Modelo Carro" />
-                        <TableColumn fx:id="columndatacriacaoLocacaoA" prefWidth="135.0" text="Data Criaçao" />
-                        <TableColumn fx:id="columndatainicioLocacaoA" prefWidth="124.0" text="Data de início" />
-                        <TableColumn fx:id="columndatafinalLocacaoA" minWidth="9.0" prefWidth="114.0" text="Data Final" />
-                        <TableColumn fx:id="columnprecoLocacaoA" minWidth="8.0" prefWidth="86.0" text="Valor total" />
-                    </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab fx:id="tabLocacaoI" text="Locações inativas">
-               <content>
-                  <TableView fx:id="tableLocacaoI" prefHeight="200.0" prefWidth="200.0">
-                     <columns>
-                        <TableColumn fx:id="columnidLocacaoI" prefWidth="75.0" text="ID" />
-                        <TableColumn fx:id="columnnomeLocacaoI" prefWidth="179.0" text="Nome Cliente" />
-                        <TableColumn fx:id="columnseguroLocacaoI" prefWidth="151.0" text="Seguro" />
-                        <TableColumn fx:id="columnmodeloLocacaoI" prefWidth="171.0" text="Modelo Carro" />
-                        <TableColumn fx:id="columndatacriacaoLocacaoI" prefWidth="120.0" text="Data Criaçao" />
-                        <TableColumn fx:id="columndatainicioLocacaoI" prefWidth="114.0" text="Data de início" />
-                        <TableColumn fx:id="columndatafinalLocacaoI" prefWidth="109.0" text="Data Final" />
-                        <TableColumn fx:id="columnprecoLocacaoI" prefWidth="120.0" text="Valor da Locação" />
-                     </columns>
-                  </TableView>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </center>
-</BorderPane>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaConsultaAllFuncController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1049.0">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <top>
+            <GridPane prefHeight="33.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="511.0" minWidth="10.0" prefWidth="99.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="975.0" minWidth="10.0" prefWidth="940.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@imagens/logoVoyage.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Consulta" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </top>
+         <center>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab fx:id="tabCliente" text="Clientes">
+                     <content>
+                        <TableView fx:id="tabelaCliente" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="columnidClientes" editable="false" prefWidth="57.0" text="ID" />
+                            <TableColumn fx:id="columnnomeCliente" editable="false" prefWidth="246.0" text="Nome" />
+                              <TableColumn fx:id="columncpfCliente" editable="false" prefWidth="136.0" text="CPF" />
+                              <TableColumn fx:id="columntipoCliente" editable="false" prefWidth="128.0" text="Tipo Telefone" />
+                              <TableColumn fx:id="columntelefoneCliente" editable="false" prefWidth="129.0" text="Telefone" />
+                              <TableColumn fx:id="columnendereco1Cliente" editable="false" prefWidth="180.0" text="Endereço 1" />
+                              <TableColumn fx:id="columnendereco2Cliente" prefWidth="163.0" text="Endereço 2" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                <Tab fx:id="tabCarro" text="Carros">
+                     <content>
+                        <TableView fx:id="tabelaCarro" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="columnidCarro" editable="false" prefWidth="58.0" text="ID" />
+                            <TableColumn fx:id="columnmodeloCarro" editable="false" prefWidth="197.0" text="Modelo" />
+                              <TableColumn fx:id="columnplacaCarro" editable="false" prefWidth="130.0" text="Placa" />
+                              <TableColumn fx:id="columnchassiCarro" editable="false" prefWidth="186.0" text="Chassi" />
+                              <TableColumn fx:id="columnvalorCarro" editable="false" prefWidth="113.0" text="Valor (Dia)" />
+                              <TableColumn fx:id="columnstatusCarro" editable="false" prefWidth="153.0" text="Se encontra:" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabSeguro" text="Seguros">
+                     <content>
+                        <TableView fx:id="tabelaSeguro" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="columnidSeguro" editable="false" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="columntipoSeguro" editable="false" prefWidth="157.0" text="Tipo Seguro" />
+                              <TableColumn fx:id="columnPrecoSeguro" editable="false" prefWidth="119.0" text="Preço (Diaria)" />
+                              <TableColumn fx:id="columndescricaoSeguro" editable="false" prefWidth="688.0" text="Descriçao do seguro" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabLocacaoAtiva" text="Locações ativas">
+                     <content>
+                        <TableView fx:id="tableLocacaoA" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="columnidLocacaoA" prefWidth="67.0" text="ID" />
+                            <TableColumn fx:id="columnnomeLocacaoA" prefWidth="178.0" text="Nome Cliente" />
+                              <TableColumn fx:id="columnseguroLocacaoA" minWidth="0.0" prefWidth="125.0" text="Seguro" />
+                              <TableColumn fx:id="columnmodeloLocacaoA" prefWidth="210.0" text="Modelo Carro" />
+                              <TableColumn fx:id="columndatacriacaoLocacaoA" prefWidth="135.0" text="Data Criaçao" />
+                              <TableColumn fx:id="columndatainicioLocacaoA" prefWidth="124.0" text="Data de início" />
+                              <TableColumn fx:id="columndatafinalLocacaoA" minWidth="9.0" prefWidth="114.0" text="Data Final" />
+                              <TableColumn fx:id="columnprecoLocacaoA" minWidth="8.0" prefWidth="86.0" text="Valor total" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabLocacaoI" text="Locações inativas">
+                     <content>
+                        <TableView fx:id="tableLocacaoI" prefHeight="200.0" prefWidth="200.0">
+                           <columns>
+                              <TableColumn fx:id="columnidLocacaoI" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="columnnomeLocacaoI" prefWidth="179.0" text="Nome Cliente" />
+                              <TableColumn fx:id="columnseguroLocacaoI" prefWidth="151.0" text="Seguro" />
+                              <TableColumn fx:id="columnmodeloLocacaoI" prefWidth="171.0" text="Modelo Carro" />
+                              <TableColumn fx:id="columndatacriacaoLocacaoI" prefWidth="120.0" text="Data Criaçao" />
+                              <TableColumn fx:id="columndatainicioLocacaoI" prefWidth="114.0" text="Data de início" />
+                              <TableColumn fx:id="columndatafinalLocacaoI" prefWidth="109.0" text="Data Final" />
+                              <TableColumn fx:id="columnprecoLocacaoI" prefWidth="120.0" text="Valor da Locação" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

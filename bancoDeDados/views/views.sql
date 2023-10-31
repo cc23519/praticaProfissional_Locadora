@@ -8,8 +8,8 @@ SELECT
     c.cpfCliente,
     t.tipoTelefone,
     CONCAT(t.dddTelefone, ' ', t.numeroTelefone) AS contatoCliente,
-    CONCAT(e.ruaCliente, ', ',e.numeroCliente,', ',e.bairroCliente,', ',e.complemento) AS enderecoCliente,
-    CONCAT(e.cidadeCliente, ', ', e.estadoCliente, ', ', e.cepCliente)
+    CONCAT(e.ruaCliente, ', ',e.numeroCliente,', ',e.bairroCliente,', ',e.complemento) AS Endereço1,
+    CONCAT(e.cidadeCliente, ', ', e.estadoCliente, ', ', e.cepCliente) AS Endereço2
 FROM esquemaLocadora.tabelaCliente c
 JOIN esquemaLocadora.tabelaClienteContatos t ON c.idClientes = t.FK_idClienteContatos
 JOIN esquemaLocadora.tabelaClienteEndereco e ON c.idClientes = e.FK_idClienteEndereco;

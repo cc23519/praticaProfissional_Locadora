@@ -44,7 +44,7 @@ public class telaLoginController {
                 Stage telaLoginStage = (Stage) buttonEntrar.getScene().getWindow();
                 telaLoginStage.close();
                 abrirTelas abrirTelas = new abrirTelas();
-                String tela = "telaCadastro.FXML";
+                String tela = "telaConsultaAllFunc.FXML";
                 abrirTelas.abrirTela(tela, "Voyage - Cadastrar Seguros e Carros");
                 System.out.println("Autenticação bem-sucedida");
             } else {
