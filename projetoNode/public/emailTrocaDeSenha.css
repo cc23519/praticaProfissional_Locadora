@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    font-family:Inria Sans;
+    min-height: 100vh;
+}
+  
+  #pagina {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #logo{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-repeat:no-repeat;
+  }
+
+  .sucessoAoEnviarEmail{
+    box-shadow: 0px 0px 10px #45bc9b;
+    background-color: #FFFFFF;
+    width: 320px;
+    height: 340px;
+    flex-direction: column;
+    display: flex;
+    position: absolute;
+    right: 520px;
+    top: 240px;
+    border-radius: 86px;
+    padding: 40px;
+  }
+
+  .sucessoAoEnviarEmail h1 {
+    font-size: 26px;
+    color: black;
+    font-family:Inria Sans;
+    text-align: center;
+    margin-top: 40px;
+    margin-left: 6px;
+  }
+
+
+  .sucessoAoEnviarEmail p {
+    font-size: 18px;
+    color: black;
+    font-family:Inria Sans;
+    text-align: center;
+  }
+
+  .sucessoAoEnviarEmail input {
+    padding: 15px;
+    font-size: 16px;
+    box-shadow: 0px 0px 10px #45bc9b;
+    border: 0 solid #45bc9b;
+    margin-top: 30px;
+    border-radius: 86px;
+  }
+
+  .btn {
+    background-color: #45bc9b;
+    color: #fff;
+    font-weight: 600;
+    border: none !important;
+    cursor: pointer;
+
+  }
+
+  #iconeSucesso { 
+    width:80px;
+    height:80px;
+    position:absolute;
+    top:160px;
+    left: 650px;
+  }

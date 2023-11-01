@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/img/logoParaAba.svg" />
+    <title>LocaCar: Escolha um carro</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Inria+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="swiper.min.css">
+    <link rel="stylesheet" href="escolhaDoCarro.css">
+
+  </head>
+  <body>
+    <div id="pagina">
+        <nav>
+            <a id="logo" href="/login">
+                <img src="/img/logo.png" alt="Logo LocaCar" />
+            </a>
+            <ul>
+                <li><a href="#">Fale Conosco</a></li>
+                <li><a id="nomeCliente"href="#">@nomeCliente</a></li>
+            </ul>
+        </nav>
+      
+        <div class="escolhaLocalDatasHorario">
+            <h1>ESCOLHA O SEU CARRO</h1>
+            <div class="col-6">
+                <div class="input-wrapper">
+                    <label for="localRetiradaVeiculo">Local retirada veículo</label>
+                    <select id="localRetiradaVeiculo">
+                        <option value="eaton">EATON</option>
+                        <option value="polis">Polis Tecnologico</option>
+                        <option value="ambev">Ambev Tech</option>
+                        <option value="sidi">Sidi</option>
+                        <option value="activy">Activy</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="diaRetirada">Dia retirada</label>
+                    <input type="date" id="diaRetirada" />
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="horaRetirada">Hora retirada</label>
+                    <input type="time" id="horaRetirada" />
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="localDevolucaoVeiculo">Local devolução veículo</label>
+                    <select id="localDevolucaoVeiculo">
+                        <option value="eaton">EATON</option>
+                        <option value="polis">Polis Tecnologico</option>
+                        <option value="ambev">Ambev Tech</option>
+                        <option value="sidi">Sidi</option>
+                        <option value="activy">Activy</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="diaDevolucao">Dia devolução</label>
+                    <input type="date" id="diaDevolucao" />
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="horaDevolucao">Hora devolução</label>
+                    <input type="time" id="horaDevolucao" />
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-container swiper">
+            <div class="slide-content">
+                <div class="card-wrapper swiper-wrapper">
+                    <div class="card swiper-slide">
+                        <div class="card-content">
+                            <h2 class="grupo">Grupo AB</h2>
+                            <p class="carrosCategoria">Jeep Renegade</p>
+                            <p class="kms">Quilometragem livre</p>
+                            <div id="linha"></div>
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="/img/jeep.png" class="card-img"/>
+                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
+                                </div>
+                            </div>
+                            <div id="linha"></div>
+                            <button class="button">Valor R$ @diarias</button>
+                        </div>
+                    </div>
+
+                    <div class="card swiper-slide">
+                        <div class="card-content">
+                            <h2 class="grupo">Grupo CD</h2>
+                            <p class="carrosCategoria">Virtus</p>
+                            <p class="kms">Quilometragem livre</p>
+                            <div id="linha"></div>
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="/img/virtus.png" class="card-img"/>
+                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
+                                </div>
+                            </div>
+                            <div id="linha"></div>
+                            <button class="button">Valor R$ @diarias</button>
+                        </div>
+                    </div>
+
+                    <div class="card swiper-slide">
+                        <div class="card-content">
+                            <h2 class="grupo">Grupo EF</h2>
+                            <p class="carrosCategoria">Ford Ka</p>
+                            <p class="kms">Quilometragem livre</p>
+                            <div id="linha"></div>
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="/img/fordKa.png" class="card-img"/>
+                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
+                                </div>
+                            </div>
+                            <div id="linha"></div>
+                            <button class="button">Valor R$ @diarias</button>
+                        </div>
+                    </div>
+
+                    <div class="card swiper-slide">
+                        <div class="card-content">
+                            <h2 class="grupo">Grupo GH</h2>
+                            <p class="carrosCategoria">HB20</p>
+                            <p class="kms">Quilometragem livre</p>
+                            <div id="linha"></div>
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="/img/hb20.png" class="card-img"/>
+                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
+                                </div>
+                            </div>
+                            <div id="linha"></div>
+                            <button class="button">Valor R$ @diarias</button>
+                        </div>
+                    </div>
+
+                    <div class="card swiper-slide">
+                        <div class="card-content">
+                            <h2 class="grupo">Grupo IJ</h2>
+                            <p class="carrosCategoria">Kicks</p>
+                            <p class="kms">Quilometragem livre</p>
+                            <div id="linha"></div>
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="/img/Kicks.png" class="card-img"/>
+                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
+                                </div>
+                            </div>
+                            <div id="linha"></div>
+                            <button class="button">Valor R$ @diarias</button>
+                        </div>
+                    </div>
+
+                    <div class="card swiper-slide">
+                        <div class="card-content">
+                            <h2 class="grupo">Grupo KL</h2>
+                            <p class="carrosCategoria">Polo</p>
+                            <p class="kms">Quilometragem livre</p>
+                            <div id="linha"></div>
+                            <div class="image-content">
+                                <div class="card-image">
+                                    <img src="/img/polo.png" class="card-img"/>
+                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
+                                </div>
+                            </div>
+                            <div id="linha"></div>
+                            <button class="button">Valor R$ @diarias</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-pagination"></div>
+        </div>
+    </div>
+  </body>
+  <script src="swiper.min.js"></script>
+  <script src="carrossel.js"></script>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/logoParaAba.svg" />
+    <title>LocaCar: Cadastro cliente</title>
+
+    <link rel="stylesheet" href="cadastroNovoCliente.css">
+    <link href="https://fonts.googleapis.com/css?family=Inria+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pagina">
+        <nav>
+            <a id="logo" href="/login">
+                <img src="/img/logo.png" alt="Logo LocaCar" />
+            </a>
+        </nav>
+        
+        <header>
+            <h1>Seja bem-vinda(o)!</h1>
+            <p>Para começar, realize seu cadastro.</p>
+        </header>
+        <form id="formularioCadastroNovoCliente">
+            <fieldset>
+                <div class="fieldset-wrapper">
+                    <legend>Preencha os campos com seus dados.</legend>
+
+                    <div class="col-2">
+                        <div class="input-wrapper">
+                            <label for="nomeCliente">Nome</label>
+                            <input type="text" id="nomeCliente" required minlength="20" />
+                        </div>
+    
+                        <div class="input-wrapper">
+                            <label for="sobrenomeCliente">Sobrenome</label>
+                            <input type="text" id="sobrenomeCliente" required minlength="30" />
+                        </div>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="cpfCliente">CPF <span>(somente números)</span></label>
+                        <input type="number" id="cpfCliente" />
+                    </div>
+
+                    <div class="col-3">
+                        <div class="input-wrapper">
+                            <label for="tipoContatoCliente">Tipo contato</label>
+                            <select id="tipoContatoCliente">
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="celular">Celular - ligação</option>
+                                <option value="conhecido">Conhecido</option>
+                            </select>
+                        </div>
+    
+                        <div class="input-wrapper">
+                            <label for="dddTelefone">DDD</label>
+                            <input type="number" id="dddTelefone" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="numeroTelefone">Telefone</label>
+                            <input type="number" id="numeroTelefone" />
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="input-wrapper">
+                            <label for="enderecoCliente">Endereço</label>
+                            <input type="text" id="enderecoCliente" />
+                        </div>
+    
+                        <div class="input-wrapper">
+                            <label for="numeroEnderecoCliente">Número</label>
+                            <input type="number" id="numeroEnderecoCliente" />
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="bairroCliente">Bairro</label>
+                            <input type="text" id="bairroCliente" />
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="input-wrapper">
+                            <label for="cidadeCliente">Cidade</label>
+                            <input type="text" id="cidadeCliente" />
+                        </div>
+    
+                        <div class="input-wrapper">
+                            <label for="estadoCliente">Estado</label>
+                            <select id="estadoCliente">
+                                <option value="ac">Acre</option>
+                                <option value="ap">Amapá</option>
+                                <option value="am">Amazonas</option>
+                                <option value="pa">Pará</option>
+                                <option value="rr">Roraima</option>
+                                <option value="to">Tocantins</option>
+                                <option value="al">Alagoas</option>
+                                <option value="ba">Bahia</option>
+                                <option value="ce">Ceará</option>
+                                <option value="ma">Maranhão</option>
+                                <option value="pb">Paraíba </option>
+                                <option value="pe">Pernambuco </option>
+                                <option value="pi">Piauí </option>
+                                <option value="rn">Rio Grande do Norte </option>
+                                <option value="se">Sergipe </option>
+                                <option value="es">Espírito Santo </option>
+                                <option value="mg">Minas Gerais </option>
+                                <option value="rj">Rio de Janeiro </option>
+                                <option value="sp">São Paulo </option>
+                                <option value="pr">Paraná </option>
+                                <option value="rs">Rio Grande do Sul </option>
+                                <option value="sc">Santa Catarina </option>
+                                <option value="df">Distrito Federal </option>
+                                <option value="go">Goiás </option>
+                                <option value="mt">Mato Grosso </option>
+                                <option value="ms">Mato Grosso do Sul  </option>
+                            </select>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="complementoCliente">Complemento</label>
+                            <input type="text" id="complementoCliente" />
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="anexoCnh">CNH</label>
+                        <input type="file" id="anexoCnh" />
+                    </div>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="fieldset-wrapper">
+                    <legend>Privacidade</legend>
+
+                    <div class="input-wrapper">
+                        <label for="emailCliente">E-mail <span>(digite um e-mail válido)</span></label>
+                        <input type="text" id="emailCliente" />
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="senhaCliente">Senha de acesso <span>(mínimo 8 caracteres)</span></label>
+                        <input type="password" id="senhaCliente" minlength="8" />
+                    </div>
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="salvarEmailESenha" />
+                        <label for="salvarEmailESenha">Salvar e-mail e senha</label>
+                    </div>
+
+                </div>
+            </fieldset>
+        </form>
+        <footer>
+            <button class="button" form="formularioCadastroNovoCliente">
+                Cadastrar-se
+            </button>
+        </footer>
+    </div>
+</body>
+</html>
