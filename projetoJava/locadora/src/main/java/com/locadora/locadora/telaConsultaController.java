@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class telaConsultaController{
     @FXML
@@ -33,10 +34,26 @@ public class telaConsultaController{
     private TableColumn<Cliente, String> columnendereco2Cliente;
 
     @FXML
+    private TableView<Carro> tabelaCarro;
+    @FXML
+    private TableColumn<Carro, Integer> columnidCarro;
+    @FXML
+    private TableColumn<Carro, String> columnmodeloCarro;
+    @FXML
+    private TableColumn<Carro, String> columnplacaCarro;
+    @FXML
+    private TableColumn<Carro, String> columnchassiCarro;
+    @FXML
+    private TableColumn<Carro, Double> columnvalorCarro;
+    @FXML
+    private TableColumn<Carro, String> columnstatusCarro;
+
+    @FXML
     public void initialize() {
         Connection connection = criarConexaoBanco.criarConexaoBancoDados();
         if (connection != null) {
             preencherTabelaClientes(connection, tabelaCliente);
+            preencherTabelaCarro(connection, tabelaCarro);
         } else {
             statusConsulta.setVisible(true);
             statusConsulta.setText("Não foi possível conectar ao banco de dados.");
@@ -54,19 +71,62 @@ public class telaConsultaController{
             while (resultSet.next()) {
                 statusConsulta.setVisible(true);
                 statusConsulta.setText("Realizando consulta...");
-                int id = resultSet.getInt("id");
-                String nome = resultSet.getString("nome");
-                String cpf = resultSet.getString("cpf");
-                String tipoTelefone = resultSet.getString("tipo_telefone");
-                String telefone = resultSet.getString("telefone");
-                String endereco1 = resultSet.getString("endereco1");
-                String endereco2 = resultSet.getString("endereco2");
+                int id = resultSet.getInt("idClientes");
+                String nome = resultSet.getString("NomeCompleto");
+                String cpf = resultSet.getString("cpfCliente");
+                String tipoTelefone = resultSet.getString("tipoTelefone");
+                String telefone = resultSet.getString("contatoCliente");
+                String endereco1 = resultSet.getString("Endereço1");
+                String endereco2 = resultSet.getString("Endereco2");
 
                 Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2);
                 clientes.add(cliente);
             }
-
             tabela.setItems(FXCollections.observableArrayList(clientes));
+            columnidClientes.setCellValueFactory(new PropertyValueFactory<>("id"));
+            columnnomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            columncpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+            columntipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoTelefone"));
+            columntelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+            columnendereco1Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco1"));
+            columnendereco2Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco2"));
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Consulta realizada");
+        } catch (SQLException e) {
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Ocorreu um erro: " + e);
+        }
+    }
+    
+    @FXML
+    public void preencherTabelaCarro(Connection connection, TableView<Carro> tabela) {
+        List<Carro> carros = new ArrayList<>();
+
+        String sql = "SELECT * FROM VconsultaCarros";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                statusConsulta.setVisible(true);
+                statusConsulta.setText("Realizando consulta...");
+                int id = resultSet.getInt("idCarro");
+                String modelo = resultSet.getString("modeloCarro");
+                String placa = resultSet.getString("placaCarro");
+                String chassi = resultSet.getString("chassiCarro");
+                String valor = resultSet.getString("precoDiaria_Carro");
+                String status = resultSet.getString("status");
+
+                Carro carro = new Carro(id, modelo, placa, chassi, valor, status);
+                carros.add(carro);
+            }
+
+            tabela.setItems(FXCollections.observableArrayList(carros));
+            columnidCarro.setCellValueFactory(new PropertyValueFactory<>("id"));
+            columnmodeloCarro.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+            columnplacaCarro.setCellValueFactory(new PropertyValueFactory<>("placa"));
+            columnchassiCarro.setCellValueFactory(new PropertyValueFactory<>("chassi"));
+            columnvalorCarro.setCellValueFactory(new PropertyValueFactory<>("valor"));
+            columnstatusCarro.setCellValueFactory(new PropertyValueFactory<>("status"));
             statusConsulta.setVisible(true);
             statusConsulta.setText("Consulta realizada");
         } catch (SQLException e) {

@@ -32,7 +32,7 @@ SELECT
     anoCarro,
     precoDiaria_Carro,
     status
-FROM tabelaCarros
+FROM esquemaLocadora.tabelaCarro
 
 -- CONSULTAR OS SEGUROS
 CREATE VIEW VconsultaSeguro AS
