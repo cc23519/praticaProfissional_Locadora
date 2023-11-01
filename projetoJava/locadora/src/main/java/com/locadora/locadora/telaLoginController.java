@@ -4,22 +4,12 @@
  */
 package com.locadora.locadora;
 
-import static com.locadora.locadora.criarConexaoBanco.criarConexaoBancoDados;
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import org.mindrot.jbcrypt.BCrypt;
 
 public class telaLoginController {
     @FXML
@@ -30,8 +20,6 @@ public class telaLoginController {
 
     @FXML
     private Button buttonEntrar;
-    
-    
     
     @FXML
     private void initialize() {

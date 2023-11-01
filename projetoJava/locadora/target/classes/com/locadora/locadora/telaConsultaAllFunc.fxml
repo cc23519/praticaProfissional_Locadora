@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaConsultaAllFuncController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaConsultaController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="1049.0">
          <padding>
@@ -121,6 +120,29 @@
               </tabs>
             </TabPane>
          </center>
+         <bottom>
+            <GridPane prefHeight="30.0" prefWidth="1049.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="515.0" minWidth="10.0" prefWidth="61.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="978.0" minWidth="10.0" prefWidth="978.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Status" textAlignment="CENTER" textFill="WHITE">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="statusConsulta" prefHeight="17.0" prefWidth="937.0" text="-" textFill="WHITE" visible="false" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
