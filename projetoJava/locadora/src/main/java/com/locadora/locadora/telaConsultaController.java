@@ -47,6 +47,17 @@ public class telaConsultaController{
     private TableColumn<Carro, Double> columnvalorCarro;
     @FXML
     private TableColumn<Carro, String> columnstatusCarro;
+    
+    @FXML
+    private TableView<Seguro> tabelaSeguro;
+    @FXML
+    private TableColumn<Seguro, Integer> columnidSeguro;
+    @FXML
+    private TableColumn<Seguro, String> columntipoSeguro;
+    @FXML
+    private TableColumn<Seguro, Double> columnPrecoSeguro;
+    @FXML
+    private TableColumn<Seguro, String> columndescricaoSeguro;
 
     @FXML
     public void initialize() {
@@ -54,6 +65,7 @@ public class telaConsultaController{
         if (connection != null) {
             preencherTabelaClientes(connection, tabelaCliente);
             preencherTabelaCarro(connection, tabelaCarro);
+            preencherTabelaSeguro(connection, tabelaSeguro);
         } else {
             statusConsulta.setVisible(true);
             statusConsulta.setText("Não foi possível conectar ao banco de dados.");
@@ -127,6 +139,39 @@ public class telaConsultaController{
             columnchassiCarro.setCellValueFactory(new PropertyValueFactory<>("chassi"));
             columnvalorCarro.setCellValueFactory(new PropertyValueFactory<>("valor"));
             columnstatusCarro.setCellValueFactory(new PropertyValueFactory<>("status"));
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Consulta realizada");
+        } catch (SQLException e) {
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Ocorreu um erro: " + e);
+        }
+    }
+    
+    @FXML
+    public void preencherTabelaSeguro(Connection connection, TableView<Seguro> tabela) {
+        List<Seguro> seguros = new ArrayList<>();
+
+        String sql = "SELECT * FROM VconsultaSeguro";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                statusConsulta.setVisible(true);
+                statusConsulta.setText("Realizando consulta...");
+                int id = resultSet.getInt("idSeguro");
+                String tiposeguro = resultSet.getString("tipoSeguro");
+                String descricao = resultSet.getString("descricaoSeguro");
+                String preco = resultSet.getString("precoSeguro");
+
+                Seguro seguro = new Seguro(id, tiposeguro, preco, descricao);
+                seguros.add(seguro);
+            }
+
+            tabela.setItems(FXCollections.observableArrayList(seguros));
+            columnidSeguro.setCellValueFactory(new PropertyValueFactory<>("id"));
+            columntipoSeguro.setCellValueFactory(new PropertyValueFactory<>("Tipo"));
+            columndescricaoSeguro.setCellValueFactory(new PropertyValueFactory<>("Descricao"));
+            columnPrecoSeguro.setCellValueFactory(new PropertyValueFactory<>("Preco"));
             statusConsulta.setVisible(true);
             statusConsulta.setText("Consulta realizada");
         } catch (SQLException e) {

@@ -41,7 +41,7 @@ SELECT
     tipoSeguro,
     descricaoSeguro,
     precoSeguro
-FROM tabelaSeguro
+FROM esquemaLocadora.tabelaSeguros
 
 -- CONSULTAR LOCAÇÕES ATIVAS
 
