@@ -79,12 +79,33 @@ public class telaConsultaController{
     private TableColumn<LocacaoA, Double> columnprecoLocacaoA;
 
     @FXML
+    private TableView<LocacaoI> tableLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, Integer> columnidLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, String> columnnomeLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, String> columnseguroLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, String> columnmodeloLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, String> columndatacriacaoLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, String> columndatainicioLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, String> columndatafinalLocacaoI;
+    @FXML
+    private TableColumn<LocacaoI, Double> columnprecoLocacaoI;
+    
+    @FXML
     public void initialize() {
         Connection connection = criarConexaoBanco.criarConexaoBancoDados();
         if (connection != null) {
             preencherTabelaClientes(connection, tabelaCliente);
             preencherTabelaCarro(connection, tabelaCarro);
             preencherTabelaSeguro(connection, tabelaSeguro);
+            preencherTabelaLocacaoA(connection, tableLocacaoA);
+            preencherTabelaLocacaoI(connection, tableLocacaoI);
         } else {
             statusConsulta.setVisible(true);
             statusConsulta.setText("Não foi possível conectar ao banco de dados.");
@@ -232,6 +253,49 @@ public class telaConsultaController{
             columndatainicioLocacaoA.setCellValueFactory(new PropertyValueFactory<>("inicio"));
             columndatafinalLocacaoA.setCellValueFactory(new PropertyValueFactory<>("fim"));
             columnprecoLocacaoA.setCellValueFactory(new PropertyValueFactory<>("valor"));
+
+
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Consulta realizada");
+        } catch (SQLException e) {
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Ocorreu um erro: " + e);
+        }
+    }
+    
+    @FXML
+    public void preencherTabelaLocacaoI(Connection connection, TableView<LocacaoI> tabela) {
+        List<LocacaoI> locacoesinativas = new ArrayList<>();
+
+        String sql = "select * from VLocacaoHistorico";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                statusConsulta.setVisible(true);
+                statusConsulta.setText("Realizando consulta...");
+                int id = resultSet.getInt("idLocacao");
+                String nome = resultSet.getString("NomeCompleto");
+                String tipo = resultSet.getString("tipoSeguro");
+                String modelo = resultSet.getString("modeloCarro");
+                String criacao = resultSet.getString("dataCriacao");
+                String inicio = resultSet.getString("dataInicio");
+                String fim = resultSet.getString("dataFim");
+                String valor = resultSet.getString("valorTotal");
+
+                LocacaoI locacaoinativa = new LocacaoI(id, nome, tipo, modelo, criacao, inicio, fim, valor);
+                locacoesinativas.add(locacaoinativa);
+            }
+
+            tabela.setItems(FXCollections.observableArrayList(locacoesinativas));
+            columnidLocacaoI.setCellValueFactory(new PropertyValueFactory<>("id"));
+            columnnomeLocacaoI.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            columnseguroLocacaoI.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+            columnmodeloLocacaoI.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+            columndatacriacaoLocacaoI.setCellValueFactory(new PropertyValueFactory<>("criacao"));
+            columndatainicioLocacaoI.setCellValueFactory(new PropertyValueFactory<>("inicio"));
+            columndatafinalLocacaoI.setCellValueFactory(new PropertyValueFactory<>("fim"));
+            columnprecoLocacaoI.setCellValueFactory(new PropertyValueFactory<>("valor"));
 
 
             statusConsulta.setVisible(true);
