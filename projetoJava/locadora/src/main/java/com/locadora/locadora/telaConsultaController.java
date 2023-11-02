@@ -58,6 +58,25 @@ public class telaConsultaController{
     private TableColumn<Seguro, Double> columnPrecoSeguro;
     @FXML
     private TableColumn<Seguro, String> columndescricaoSeguro;
+    
+    @FXML
+    private TableView<LocacaoA> tableLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, Integer> columnidLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, String> columnnomeLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, String> columnseguroLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, String> columnmodeloLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, String> columndatacriacaoLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, String> columndatainicioLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, String> columndatafinalLocacaoA;
+    @FXML
+    private TableColumn<LocacaoA, Double> columnprecoLocacaoA;
 
     @FXML
     public void initialize() {
@@ -172,6 +191,49 @@ public class telaConsultaController{
             columntipoSeguro.setCellValueFactory(new PropertyValueFactory<>("Tipo"));
             columndescricaoSeguro.setCellValueFactory(new PropertyValueFactory<>("Descricao"));
             columnPrecoSeguro.setCellValueFactory(new PropertyValueFactory<>("Preco"));
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Consulta realizada");
+        } catch (SQLException e) {
+            statusConsulta.setVisible(true);
+            statusConsulta.setText("Ocorreu um erro: " + e);
+        }
+    }
+    
+    @FXML
+    public void preencherTabelaLocacaoA(Connection connection, TableView<LocacaoA> tabela) {
+        List<LocacaoA> locacoesativas = new ArrayList<>();
+
+        String sql = "select * from VLocacaoAtiva";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                statusConsulta.setVisible(true);
+                statusConsulta.setText("Realizando consulta...");
+                int id = resultSet.getInt("idLocacao");
+                String nome = resultSet.getString("NomeCompleto");
+                String tipo = resultSet.getString("tipoSeguro");
+                String modelo = resultSet.getString("modeloCarro");
+                String criacao = resultSet.getString("dataCriacao");
+                String inicio = resultSet.getString("dataInicio");
+                String fim = resultSet.getString("dataFim");
+                String valor = resultSet.getString("valorTotal");
+
+                LocacaoA locacaoativa = new LocacaoA(id, nome, tipo, modelo, criacao, inicio, fim, valor);
+                locacoesativas.add(locacaoativa);
+            }
+
+            tabela.setItems(FXCollections.observableArrayList(locacoesativas));
+            columnidLocacaoA.setCellValueFactory(new PropertyValueFactory<>("id"));
+            columnnomeLocacaoA.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            columnseguroLocacaoA.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+            columnmodeloLocacaoA.setCellValueFactory(new PropertyValueFactory<>("modelo"));
+            columndatacriacaoLocacaoA.setCellValueFactory(new PropertyValueFactory<>("criacao"));
+            columndatainicioLocacaoA.setCellValueFactory(new PropertyValueFactory<>("inicio"));
+            columndatafinalLocacaoA.setCellValueFactory(new PropertyValueFactory<>("fim"));
+            columnprecoLocacaoA.setCellValueFactory(new PropertyValueFactory<>("valor"));
+
+
             statusConsulta.setVisible(true);
             statusConsulta.setText("Consulta realizada");
         } catch (SQLException e) {

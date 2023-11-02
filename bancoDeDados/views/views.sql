@@ -44,5 +44,38 @@ SELECT
 FROM esquemaLocadora.tabelaSeguros
 
 -- CONSULTAR LOCAÇÕES ATIVAS
+CREATE VIEW VLocacaoAtiva
+AS
+SELECT
+l.idLocacao,
+CONCAT(cli.nomeCliente, ' ', cli.sobrenomeCliente) AS NomeCompleto,
+s.tipoSeguro,
+c.modeloCarro,
+l.dataCriacao,
+l.dataInicio,
+l.dataFim,
+l.valorTotal,
+l.status
+FROM esquemaLocadora.tabelaLocacao_Ativa l
+JOIN esquemaLocadora.tabelaCarro c ON c.idCarro = l.FK_idCarroLocacao
+JOIN esquemaLocadora.tabelaSeguros s ON s.idSeguro = l.FK_idSeguroLocacao
+JOIN esquemaLocadora.tabelaCliente cli ON cli.idClientes = l.FK_idClienteLocacao
 
 -- CONSULTAR O HISTÓRICO DAS LOCAÇÕES
+
+CREATE VIEW VLocacaoHistorico
+AS
+SELECT
+l.idLocacao,
+CONCAT(cli.nomeCliente, ' ', cli.sobrenomeCliente) AS NomeCompleto,
+s.tipoSeguro,
+c.modeloCarro,
+l.dataCriacao,
+l.dataInicio,
+l.dataFim,
+l.valorTotal,
+l.status
+FROM esquemaLocadora.tabelaLocacao_Histórico l
+JOIN esquemaLocadora.tabelaCarro c ON c.idCarro = l.FK_idCarroLocacao
+JOIN esquemaLocadora.tabelaSeguros s ON s.idSeguro = l.FK_idSeguroLocacao
+JOIN esquemaLocadora.tabelaCliente cli ON cli.idClientes = l.FK_idClienteLocacao
