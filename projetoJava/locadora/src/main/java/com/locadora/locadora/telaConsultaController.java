@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import java.sql.Connection;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,14 +100,53 @@ public class telaConsultaController{
     private TableColumn<LocacaoI, Double> columnprecoLocacaoI;
     
     @FXML
+    private TabPane tabPane;
+    @FXML
+    private Tab tabCliente;
+    @FXML
+    private Tab tabCarro;
+    @FXML
+    private Tab tabSeguro;
+    @FXML
+    private Tab tabLocacaoAtiva;
+    @FXML
+    private Tab tabLocacaoI;
+    
+    @FXML
     public void initialize() {
         Connection connection = criarConexaoBanco.criarConexaoBancoDados();
         if (connection != null) {
-            preencherTabelaClientes(connection, tabelaCliente);
-            preencherTabelaCarro(connection, tabelaCarro);
-            preencherTabelaSeguro(connection, tabelaSeguro);
-            preencherTabelaLocacaoA(connection, tableLocacaoA);
-            preencherTabelaLocacaoI(connection, tableLocacaoI);
+            tabCliente.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    preencherTabelaClientes(connection, tabelaCliente);
+                }
+            });
+
+            tabCarro.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    preencherTabelaCarro(connection, tabelaCarro);
+                }
+            });
+
+
+            tabSeguro.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    preencherTabelaSeguro(connection, tabelaSeguro);
+                }
+            });
+
+            tabLocacaoAtiva.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    preencherTabelaLocacaoA(connection, tableLocacaoA);
+                }
+            });
+            
+            tabLocacaoI.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    preencherTabelaLocacaoI(connection, tableLocacaoI);
+                }
+            });
+            
         } else {
             statusConsulta.setVisible(true);
             statusConsulta.setText("Não foi possível conectar ao banco de dados.");

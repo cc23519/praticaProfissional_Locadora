@@ -1,3 +1,4 @@
+com\locadora\locadora\LocacaoI.class
 com\locadora\locadora\Carro.class
 com\locadora\locadora\abrirTelas.class
 com\locadora\locadora\criarConexaoBanco.class
@@ -14,3 +15,4 @@ com\locadora\locadora\Cliente.class
 com\locadora\locadora\inserirCarro.class
 com\locadora\locadora\telaConsultaController.class
 com\locadora\locadora\inserirColaborador.class
+com\locadora\locadora\LocacaoA.class
