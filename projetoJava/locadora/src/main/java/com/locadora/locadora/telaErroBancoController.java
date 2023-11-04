@@ -43,16 +43,11 @@ public class telaErroBancoController {
                     if (connection != null) {
                         Stage stage = (Stage) buttonErroSair.getScene().getWindow();
                         stage.close();
-                        FXMLLoader fxmlLoader = new FXMLLoader(ClassePrincipal.class.getResource("telaLogin.fxml"));
                         Scene scene = null;
-                        try {
-                            scene = new Scene(fxmlLoader.load());
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        stage.setTitle("Voyage - Sistema Interno");
-                        stage.setScene(scene);
-                        stage.show();
+                        abrirTelas abrirTelas = new abrirTelas();
+                        String tela = "telaLogin.FXML";
+                        abrirTelas.abrirTela(tela, "Voyage - Sistema Interno");
+                        System.out.println("Autenticação bem-sucedida");
                     } else {
                         erroProgressBar.setVisible(false);
                         System.out.println("Erro");

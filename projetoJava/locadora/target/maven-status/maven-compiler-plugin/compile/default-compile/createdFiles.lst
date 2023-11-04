@@ -14,5 +14,6 @@ com\locadora\locadora\telaCadastroColaboradoresController.class
 com\locadora\locadora\Cliente.class
 com\locadora\locadora\inserirCarro.class
 com\locadora\locadora\telaConsultaController.class
+com\locadora\locadora\telaExcluirController.class
 com\locadora\locadora\inserirColaborador.class
 com\locadora\locadora\LocacaoA.class

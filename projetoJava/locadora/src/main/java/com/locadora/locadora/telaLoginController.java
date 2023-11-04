@@ -21,10 +21,12 @@ public class telaLoginController {
     @FXML
     private Button buttonEntrar;
     
+    public String login;
+    
     @FXML
     private void initialize() {
         buttonEntrar.setOnAction(event -> {
-            String login = fieldLogin.getText();
+            login = fieldLogin.getText();
             String senha = passwordSenha.getText();
             
             autenticarUsuario autenticarUsuario = new autenticarUsuario();
@@ -32,8 +34,8 @@ public class telaLoginController {
                 Stage telaLoginStage = (Stage) buttonEntrar.getScene().getWindow();
                 telaLoginStage.close();
                 abrirTelas abrirTelas = new abrirTelas();
-                String tela = "telaConsultaAllFunc.FXML";
-                abrirTelas.abrirTela(tela, "Voyage - Cadastrar Seguros e Carros");
+                String tela = "telaConsultaExcluir.fxml";
+                abrirTelas.abrirTela(tela, "Voyage - Excluir");
                 System.out.println("Autenticação bem-sucedida");
             } else {
                 Alert alert = new Alert(AlertType.ERROR);
@@ -43,6 +45,10 @@ public class telaLoginController {
                 alert.showAndWait();
             }
         });
+    }
+
+    public String getLogin() {
+        return login;
     }
 }
 
