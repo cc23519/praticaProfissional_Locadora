@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -17,16 +18,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
-public class telaExcluirController {
+public class telaExcluirController { 
     @FXML
     private Button buttonClientes;
 
@@ -40,10 +34,16 @@ public class telaExcluirController {
     private Button buttonLocaAtivas;
 
     @FXML
-    private Button buttonLocaInativa;
-
-    @FXML
     private Button buttonExcluirSelecionado;
+    
+    @FXML
+    private Button buttonExcluirPorID;
+    
+    @FXML
+    private TextField textID;
+    
+    @FXML
+    private ComboBox comboboxTab;
 
     @FXML
     private ImageView imageView;
@@ -142,33 +142,6 @@ public class telaExcluirController {
     private TableColumn<LocacaoA, String> colunmvalorLocaAtiva;
 
     @FXML
-    private TableView<LocacaoI> tableLocaInativas;
-
-    @FXML
-    private TableColumn<LocacaoI, Integer> colunmidLocaInativa;
-
-    @FXML
-    private TableColumn<LocacaoI, String> colunmnomeLocaInativa;
-
-    @FXML
-    private TableColumn<LocacaoI, String> colunmseguroLocaInativa;
-
-    @FXML
-    private TableColumn<LocacaoI, String> colunmcarroLocaInativa;
-
-    @FXML
-    private TableColumn<LocacaoI, String> colunmcriacaoLocaInativa;
-
-    @FXML
-    private TableColumn<LocacaoI, String> colunminicioLocaInativa;
-
-    @FXML
-    private TableColumn<LocacaoI, String> colunmfinalLocaInativa;
-
-    @FXML
-    private TableColumn<LocacaoI, String> colunmvalorLocaInativa;
-
-    @FXML
     private Tab tabCliente;
     
     @FXML
@@ -180,15 +153,24 @@ public class telaExcluirController {
     @FXML
     private Tab tabAtivas;
     
-    @FXML
-    private Tab tabInativas;
-
+    Connection connection = criarConexaoBanco.criarConexaoBancoDados();
+    
+    String loginuser; 
+    
     @FXML
     public void initialize(){
-        Connection connection = criarConexaoBanco.criarConexaoBancoDados();
+        ObservableList<String> Opcoes = FXCollections.observableArrayList("Cliente", "Carro", "Seguro", "Loca. Ativas");
+        comboboxTab.setItems(Opcoes);
+        comboboxTab.setValue("Cliente");
         
-        telaLoginController telaLoginController = new telaLoginController();
-        String user = telaLoginController.getLogin();
+        comboboxTab.setOnAction(event ->{
+            String tipoExclusao = (String) comboboxTab.getValue();
+        });
+        
+        buttonExcluirPorID.setOnAction(event ->{
+            excluirPorID();
+        });
+        
         if (connection != null) {
             buttonClientes.setOnAction(event ->{
                 ativarTab(tabCliente);
@@ -206,11 +188,7 @@ public class telaExcluirController {
                 ativarTab(tabAtivas);
             });
             
-            buttonLocaInativa.setOnAction(event ->{
-                ativarTab(tabInativas);
-            });
-            
-            
+ 
             tabCliente.selectedProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue) {
                     preencherTabelaClientes(connection, tableCliente);
@@ -235,13 +213,7 @@ public class telaExcluirController {
                     preencherTabelaLocacaoA(connection, tableLocaAtivas);
                 }
             });
-            
-            tabInativas.selectedProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue) {
-                    preencherTabelaLocacaoI(connection, tableLocaInativas);
-                }
-            });
-            
+                     
         } else {
             textStatus.setVisible(true);
             textStatus.setText("Não foi possível conectar ao banco de dados.");
@@ -405,46 +377,126 @@ public class telaExcluirController {
     }
     
     @FXML
-    public void preencherTabelaLocacaoI(Connection connection, TableView<LocacaoI> tabela) {
-        List<LocacaoI> locacoesinativas = new ArrayList<>();
+    public void excluirPorID() {
+        String tipoColaborador = (String) comboboxTab.getValue();
+        String id = textID.getText();
+        excluirClientes excluirClientes = new excluirClientes();
+        excluirCarros excluirCarro = new excluirCarros();
+        excluirSeguros excluirSeguro = new excluirSeguros();
+        excluirLocacoes excluirLocacoes = new excluirLocacoes();
+        
 
-        String sql = "select * from VLocacaoHistorico";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+        System.out.print(id);
 
-            while (resultSet.next()) {
-                textStatus.setVisible(true);
-                textStatus.setText("Realizando consulta...");
-                int id = resultSet.getInt("idLocacao");
-                String nome = resultSet.getString("NomeCompleto");
-                String tipo = resultSet.getString("tipoSeguro");
-                String modelo = resultSet.getString("modeloCarro");
-                String criacao = resultSet.getString("dataCriacao");
-                String inicio = resultSet.getString("dataInicio");
-                String fim = resultSet.getString("dataFim");
-                String valor = resultSet.getString("valorTotal");
+        if (null == tipoColaborador) {
+            textStatus.setVisible(true);
+            textStatus.setText("Ocorreu um erro.");
+        } else {
+            switch (tipoColaborador) {
+                case "Cliente": {
+                    System.out.print(loginuser);
+                    Integer resultado = excluirClientes.excluirCliente(loginuser, Integer.parseInt(id));
+                    System.out.print(resultado);
+                    switch (resultado) {
+                        case 0:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                            break;
+                        case 3:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Não foi permitido excluir esse cliente. Motivo: Existe uma locação ativa para esse cliente. Excluir locação para prosseguir.");
+                            break;
+                        case 4:
+                            preencherTabelaClientes(connection, tableCliente);
+                            textStatus.setVisible(true);
+                            textStatus.setText("Exclusão realizada com sucesso.");
+                            break;
+                        default:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Ocorreu um erro.");
+                            break;
+                    }
+                    break;
+                }
+                case "Carro": {
+                    Integer resultado = excluirCarro.excluirCarro(loginuser, Integer.parseInt(id));
+                    switch (resultado) {
+                        case 0:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                            break;
+                        case 3:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Não foi permitido excluir esse cliente. Motivo: Existe uma locação ativa para esse carro. Excluir locação para prosseguir.");
+                            break;
+                        case 4:
+                            preencherTabelaClientes(connection, tableCliente);
+                            textStatus.setVisible(true);
+                            textStatus.setText("Exclusão realizada com sucesso.");
+                            break;
+                        default:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Ocorreu um erro.");
+                            break;
+                    }
+                    break;
+                }
 
-                LocacaoI locacaoinativa = new LocacaoI(id, nome, tipo, modelo, criacao, inicio, fim, valor);
-                locacoesinativas.add(locacaoinativa);
+                case "Seguro": {
+                    loginuser = usuario.getUsername();
+                    System.out.print(loginuser);
+                    Integer resultado = excluirSeguro.excluirSeguro(loginuser, Integer.parseInt(id));
+                    System.out.print(resultado);
+                    switch (resultado) {
+                        case 0:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                            break;
+                        case 3:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Não foi permitido excluir esse cliente. Motivo: Existe uma locação ativa para esse seguro. Excluir locação para prosseguir.");
+                            break;
+                        case 4:
+                            preencherTabelaClientes(connection, tableCliente);
+                            textStatus.setVisible(true);
+                            textStatus.setText("Exclusão realizada com sucesso.");
+                            break;
+                        default:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Ocorreu um erro.");
+                            break;
+                    }
+                    break;
+                }
+                case "Loca. Ativas": {
+                    loginuser = usuario.getUsername();
+                    Integer resultado = excluirLocacoes.excluirLocacao(loginuser, Integer.parseInt(id));
+                    switch (resultado) {
+                        case 0:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                            break;
+                        case 4:
+                            preencherTabelaClientes(connection, tableCliente);
+                            textStatus.setVisible(true);
+                            textStatus.setText("Exclusão realizada com sucesso.");
+                            break;
+                        default:
+                            textStatus.setVisible(true);
+                            textStatus.setText("Ocorreu um erro.");
+                            break;
+                    }
+                    break;
+                }
+                default:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Ocorreu um erro.");
+                    break;
             }
-
-            tabela.setItems(FXCollections.observableArrayList(locacoesinativas));
-            colunmidLocaInativa.setCellValueFactory(new PropertyValueFactory<>("id"));
-            colunmnomeLocaInativa.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            colunmseguroLocaInativa.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-            colunmcarroLocaInativa.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-            colunmcriacaoLocaInativa.setCellValueFactory(new PropertyValueFactory<>("criacao"));
-            colunminicioLocaInativa.setCellValueFactory(new PropertyValueFactory<>("inicio"));
-            colunmfinalLocaInativa.setCellValueFactory(new PropertyValueFactory<>("fim"));
-            colunmvalorLocaInativa.setCellValueFactory(new PropertyValueFactory<>("valor"));
-
-
-            textStatus.setVisible(true);
-            textStatus.setText("Consulta realizada");
-        } catch (SQLException e) {
-            textStatus.setVisible(true);
-            textStatus.setText("Ocorreu um erro: " + e);
         }
-    }
 
+
+
+      
+}
 }

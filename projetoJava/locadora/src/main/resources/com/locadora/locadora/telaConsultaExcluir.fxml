@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -15,6 +16,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="1047.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaExcluirController">
@@ -42,7 +44,7 @@
       </GridPane>
    </top>
    <left>
-      <VBox prefHeight="600.0" prefWidth="129.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="683.0" prefWidth="136.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="261.0" prefWidth="122.0">
                <children>
@@ -59,7 +61,6 @@
                               <Button fx:id="buttonCarro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Carros" />
                               <Button fx:id="buttonSeguros" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Seguros" />
                               <Button fx:id="buttonLocaAtivas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Locações ativas" />
-                              <Button fx:id="buttonLocaInativa" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Locações Inativas" />
                            </children>
                            <VBox.margin>
                               <Insets left="5.0" right="5.0" />
@@ -75,12 +76,25 @@
                                  <font>
                                     <Font size="17.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
                               </Label>
                               <Button fx:id="buttonExcluirSelecionado" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Excluir Selecionado" />
-                              <TextField fx:id="textID" promptText="ID" />
+                              <Line endX="-18.5" endY="-8.58306884765625E-6" startX="-100.0" strokeLineCap="ROUND" strokeWidth="2.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Line>
+                              <ComboBox fx:id="comboboxTab" prefWidth="150.0" />
+                              <TextField fx:id="textID" promptText="ID">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></TextField>
+                              <Button fx:id="buttonExcluirPorID" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Excluir por ID" />
                            </children>
                            <VBox.margin>
-                              <Insets left="5.0" right="5.0" />
+                              <Insets left="5.0" right="5.0" top="10.0" />
                            </VBox.margin>
                         </VBox>
                      </children>
@@ -114,7 +128,7 @@
         <tabs>
           <Tab fx:id="tabCliente" text="Cliente">
                <content>
-                  <TableView fx:id="tableCliente" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tableCliente" prefHeight="615.0" prefWidth="918.0">
                      <columns>
                         <TableColumn fx:id="colunmidCliente" prefWidth="42.0" text="ID" />
                         <TableColumn fx:id="colunmnomeCliente" prefWidth="149.0" text="Nome Completo" />
@@ -166,22 +180,6 @@
                         <TableColumn fx:id="colunmfinalLocaAtiva" prefWidth="90.0" text="Data Final" />
                         <TableColumn fx:id="colunmvalorLocaAtiva" prefWidth="78.0" text="Valor Total" />
                     </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab fx:id="tabInativas" text="Loca. Inativas">
-               <content>
-                  <TableView fx:id="tableInativas" prefHeight="200.0" prefWidth="200.0">
-                     <columns>
-                        <TableColumn fx:id="colunmidLocaInativa" prefWidth="45.0" text="ID" />
-                        <TableColumn fx:id="colunmnomeLocaInativa" prefWidth="188.0" text="Nome Cliente" />
-                        <TableColumn fx:id="colunmseguroLocaInativa" prefWidth="155.0" text="Seguro" />
-                        <TableColumn fx:id="colunmcarroLocaInativa" prefWidth="152.0" text="Carro" />
-                        <TableColumn fx:id="colunmcriacaoLocaInativa" prefWidth="109.0" text="Data Criação" />
-                        <TableColumn fx:id="colunminicioLocaInativa" prefWidth="98.0" text="Data Início" />
-                        <TableColumn fx:id="colunmfinalLocaInativa" prefWidth="89.0" text="Data Final" />
-                        <TableColumn fx:id="colunmvalorLocaInativa" prefWidth="82.0" text="Valor Total" />
-                     </columns>
                   </TableView>
                </content>
             </Tab>

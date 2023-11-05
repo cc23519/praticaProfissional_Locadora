@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.locadora.locadora;
 
 import javafx.fxml.FXML;
@@ -21,16 +17,18 @@ public class telaLoginController {
     @FXML
     private Button buttonEntrar;
     
-    public String login;
+    public String login2;
     
     @FXML
-    private void initialize() {
+    public void initialize() {
         buttonEntrar.setOnAction(event -> {
-            login = fieldLogin.getText();
+            String login = fieldLogin.getText();
             String senha = passwordSenha.getText();
-            
+
             autenticarUsuario autenticarUsuario = new autenticarUsuario();
             if (autenticarUsuario.autenticarUsuario(login, senha)) {
+
+                usuario.setUsername(login);
                 Stage telaLoginStage = (Stage) buttonEntrar.getScene().getWindow();
                 telaLoginStage.close();
                 abrirTelas abrirTelas = new abrirTelas();
@@ -45,11 +43,6 @@ public class telaLoginController {
                 alert.showAndWait();
             }
         });
-    }
+    }  
 
-    public String getLogin() {
-        return login;
-    }
 }
-
-
