@@ -9,10 +9,11 @@ public class excluirClientes {
      public int excluirCliente(String usuario, int idCliente)  {
         int resultado = -1;
         try (Connection conn = criarConexaoBancoDados();
-             CallableStatement stmt = conn.prepareCall("EXEC stExcluirClientes(?, ?)")) {
+             CallableStatement stmt = conn.prepareCall("{call stExcluirClientes(?, ?)}")) {
 
             stmt.setString(1, usuario);
             stmt.setInt(2, idCliente);
+            stmt.registerOutParameter(3, java.sql.Types.INTEGER);
 
             stmt.execute();
 

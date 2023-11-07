@@ -9,7 +9,7 @@ public class excluirLocacoes {
      public int excluirLocacao(String usuario, int idSeguro) {
         int resultado = -1;
         try (Connection conn = criarConexaoBancoDados();
-             CallableStatement stmt = conn.prepareCall("EXEC stExcluirLocacoes(?, ?)")) {
+             CallableStatement stmt = conn.prepareCall("{call stExcluirLocacoes(?, ?)}")) {
 
             stmt.setString(1, usuario);
             stmt.setInt(2, idSeguro);

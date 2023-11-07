@@ -18,7 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 
 public class telaExcluirController { 
     @FXML
@@ -45,8 +44,6 @@ public class telaExcluirController {
     @FXML
     private ComboBox comboboxTab;
 
-    @FXML
-    private ImageView imageView;
     
     @FXML
     private TabPane tabExclusao;
@@ -115,7 +112,7 @@ public class telaExcluirController {
     private TableColumn<Seguro, String> colunmdescricaoSeguro;
 
     @FXML
-    private TableView<LocacaoA> tableLocaAtivas;
+    private TableView<LocacaoA> tableAtivas;
 
     @FXML
     private TableColumn<LocacaoA, Integer> colunmidLocaAtiva;
@@ -210,7 +207,7 @@ public class telaExcluirController {
 
             tabAtivas.selectedProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue) {
-                    preencherTabelaLocacaoA(connection, tableLocaAtivas);
+                    preencherTabelaLocacaoA(connection, tableAtivas);
                 }
             });
                      

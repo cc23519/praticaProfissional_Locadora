@@ -1,7 +1,8 @@
 -- EXCLUSÃO DE CARROS
-create PROCEDURE stExcluirCarros
+ALTER PROCEDURE stExcluirCarros
     @usuario VARCHAR(15),
-    @idexclusao INT
+    @idexclusao INT,
+    @resultado INT OUTPUT
 AS 
 BEGIN
     DECLARE @tipoacesso INT;
@@ -39,8 +40,9 @@ BEGIN
     END
 END
 
+
 -- EXCLUSÃO DE SEGUROS
-create PROCEDURE stExcluirSeguros
+ALTER PROCEDURE stExcluirSeguros
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -85,9 +87,10 @@ BEGIN
 END
 
 -- EXCLUSÃO DE CLIENTES
-create PROCEDURE stExcluirClientes
+alter PROCEDURE stExcluirClientes
     @usuario VARCHAR(15),
-    @idexclusao INT
+    @idexclusao INT,
+    @resultado INT OUTPUT
 AS 
 BEGIN
     DECLARE @tipoacesso INT;
@@ -97,7 +100,6 @@ BEGIN
 	FROM esquemaLocadora.tabelaColaborador c
 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
 	WHERE cc.usuarioColab = @usuario; 
-
 
     IF @tipoacesso = 1
     BEGIN
@@ -131,14 +133,15 @@ BEGIN
 END
 
 -- EXCLUSÃO DE LOCAÇÕES ATIVAS
-create PROCEDURE stExcluirLocacoes
+ALTER PROCEDURE stExcluirLocacoes
     @usuario VARCHAR(15),
-    @idexclusao INT
+    @idexclusao INT,
+    @resultado INT OUTPUT
 AS 
 BEGIN
     DECLARE @tipoacesso INT;
     DECLARE @id INT;
-
+    
 	SELECT @tipoAcesso = c.tipoAcesso
 	FROM esquemaLocadora.tabelaColaborador c
 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
