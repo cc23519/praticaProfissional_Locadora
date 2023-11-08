@@ -163,6 +163,11 @@ public class telaExcluirController {
         comboboxTab.setOnAction(event ->{
             String tipoExclusao = (String) comboboxTab.getValue();
         });
+
+
+        buttonExcluirSelecionado.setOnAction(event ->{
+            excluirSelecionado();
+        });
         
         buttonExcluirPorID.setOnAction(event ->{
             excluirPorID();
@@ -391,6 +396,7 @@ public class telaExcluirController {
         } else {
             switch (tipoColaborador) {
                 case "Cliente": {
+                    loginuser = usuario.getUsername();
                     System.out.print(loginuser);
                     Integer resultado = excluirClientes.excluirCliente(loginuser, Integer.parseInt(id));
                     System.out.print(resultado);
@@ -416,6 +422,7 @@ public class telaExcluirController {
                     break;
                 }
                 case "Carro": {
+                    loginuser = usuario.getUsername();
                     Integer resultado = excluirCarro.excluirCarro(loginuser, Integer.parseInt(id));
                     switch (resultado) {
                         case 0:
@@ -490,10 +497,114 @@ public class telaExcluirController {
                     textStatus.setText("Ocorreu um erro.");
                     break;
             }
+        } 
+}
+
+    @FXML
+    public void excluirSelecionado() {
+        Object linhaSelecionada = tabela.getSelectionModel().getSelectedItem();
+        excluirClientes excluirClientes = new excluirClientes();
+        excluirCarros excluirCarro = new excluirCarros();
+        excluirSeguros excluirSeguro = new excluirSeguros();
+        excluirLocacoes excluirLocacoes = new excluirLocacoes();
+
+        if (linhaSelecionada != null) {
+            if (linhaSelecionada instanceof Carro) {
+                Carro carroSelecionado = (Carro) linhaSelecionada;
+                int idCarro = carroSelecionado.getId();
+            
+                Integer resultado = excluirCarro.excluirCarro(loginuser, Integer.parseInt(id));
+
+            switch (resultado) {
+                case 0:
+                textStatus.setVisible(true);
+                textStatus.setText("Você não tem acesso de moderador para realizar exclusão de carros.");
+                    break;
+                case 3:
+                textStatus.setVisible(true);
+                textStatus.setText("Não foi permitido excluir esse carro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
+                    break;
+                case 4:
+                textStatus.setVisible(true);
+                textStatus.setText("Exclusão realizada com sucesso.");
+                    break;
+                default:
+                textStatus.setVisible(true);
+                textStatus.setText("Ocorreu um erro.");
+                    break;
+            }
+                
+            }} else if (linhaSelecionada instanceof Seguro) {
+                Seguro seguroSelecionado = (Seguro) linhaSelecionada;
+                int idSeguro = seguroSelecionado.getId();
+
+                Integer resultado = excluirSeguro.excluirSeguro(loginuser, Integer.parseInt(id));
+
+                switch (resultado) {
+                    case 0:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                        break;
+                    case 3:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Não foi permitido excluir esse seguro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
+                        break;
+                    case 4:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Exclusão realizada com sucesso.");
+                        break;
+                    default:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Ocorreu um erro.");
+                        break;
+
+            }} else if (linhaSelecionada instanceof Cliente) {
+                Cliente clienteSelecionado = (Cliente) linhaSelecionada;
+                int idCliente = clienteSelecionado.getId();
+
+                Integer resultado = excluirClientes.excluirCliente(loginuser, Integer.parseInt(id));
+
+                switch (resultado) {
+                    case 0:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                        break;
+                    case 3:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Não foi permitido excluir esse cliente. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
+                        break;
+                    case 4:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Exclusão realizada com sucesso.");
+                        break;
+                    default:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Ocorreu um erro.");
+                        break;
+
+            }} else if (linhaSelecionada instanceof LocacaoA) {
+                LocacaoA locacaoSelecionada = (LocacaoA) linhaSelecionada;
+                int idLocacao = locacaoSelecionada.getId();
+
+                Integer resultado = excluirLocacoes.excluirLocacao(loginuser, Integer.parseInt(id));
+
+                switch (resultado) {
+                    case 0:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                        break;
+                    case 4:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Exclusão realizada com sucesso.");
+                        break;
+                    default:
+                    textStatus.setVisible(true);
+                    textStatus.setText("Ocorreu um erro.");
+                        break;
+        }}
+        } else {
+            textStatus.setVisible(true);
+            textStatus.setText("Não há linhas selecionadas.");
+            break;
         }
-
-
-
-      
-}
-}
+    }
