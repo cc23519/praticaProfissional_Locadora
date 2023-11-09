@@ -499,112 +499,126 @@ public class telaExcluirController {
             }
         } 
 }
-
+    
     @FXML
     public void excluirSelecionado() {
-        Object linhaSelecionada = tabela.getSelectionModel().getSelectedItem();
+        Object linhaSelecionada = null;
         excluirClientes excluirClientes = new excluirClientes();
         excluirCarros excluirCarro = new excluirCarros();
         excluirSeguros excluirSeguro = new excluirSeguros();
         excluirLocacoes excluirLocacoes = new excluirLocacoes();
 
+        if (tabExclusao.getSelectionModel().getSelectedItem() == tabCliente) {
+            linhaSelecionada = tableCliente.getSelectionModel().getSelectedItem();
+        } else if (tabExclusao.getSelectionModel().getSelectedItem() == tabCarro) {
+            linhaSelecionada = tableCarro.getSelectionModel().getSelectedItem();
+        } else if (tabExclusao.getSelectionModel().getSelectedItem() == tabSeguro) {
+            linhaSelecionada = tableSeguros.getSelectionModel().getSelectedItem();
+        } else if (tabExclusao.getSelectionModel().getSelectedItem() == tabAtivas) {
+            linhaSelecionada = tableAtivas.getSelectionModel().getSelectedItem();
+        }
+
         if (linhaSelecionada != null) {
             if (linhaSelecionada instanceof Carro) {
+                loginuser = usuario.getUsername();
+                
                 Carro carroSelecionado = (Carro) linhaSelecionada;
                 int idCarro = carroSelecionado.getId();
-            
-                Integer resultado = excluirCarro.excluirCarro(loginuser, Integer.parseInt(id));
 
-            switch (resultado) {
-                case 0:
-                textStatus.setVisible(true);
-                textStatus.setText("Você não tem acesso de moderador para realizar exclusão de carros.");
-                    break;
-                case 3:
-                textStatus.setVisible(true);
-                textStatus.setText("Não foi permitido excluir esse carro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
-                    break;
-                case 4:
-                textStatus.setVisible(true);
-                textStatus.setText("Exclusão realizada com sucesso.");
-                    break;
-                default:
-                textStatus.setVisible(true);
-                textStatus.setText("Ocorreu um erro.");
-                    break;
-            }
-                
-            }} else if (linhaSelecionada instanceof Seguro) {
+                Integer resultado = excluirCarro.excluirCarro(loginuser, idCarro);
+
+                switch (resultado) {
+                    case 0:
+                        textStatus.setVisible(true);
+                        textStatus.setText("Você não tem acesso de moderador para realizar exclusão de carros.");
+                        break;
+                    case 3:
+                        textStatus.setVisible(true);
+                        textStatus.setText("Não foi permitido excluir esse carro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
+                        break;
+                    case 4:
+                        textStatus.setVisible(true);
+                        textStatus.setText("Exclusão realizada com sucesso.");
+                        break;
+                    default:
+                        textStatus.setVisible(true);
+                        textStatus.setText("Ocorreu um erro.");
+                        break;
+                }
+            } else if (linhaSelecionada instanceof Seguro) {
                 Seguro seguroSelecionado = (Seguro) linhaSelecionada;
                 int idSeguro = seguroSelecionado.getId();
-
-                Integer resultado = excluirSeguro.excluirSeguro(loginuser, Integer.parseInt(id));
+                loginuser = usuario.getUsername();
+                System.out.print(loginuser);
+                Integer resultado = excluirSeguro.excluirSeguro(loginuser, idSeguro);
 
                 switch (resultado) {
                     case 0:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Você não tem acesso de moderador para realizar exclusão de seguros.");
                         break;
                     case 3:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Não foi permitido excluir esse seguro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Não foi permitido excluir esse seguro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
                         break;
                     case 4:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Exclusão realizada com sucesso.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Exclusão realizada com sucesso.");
                         break;
                     default:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Ocorreu um erro.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Ocorreu um erro.");
                         break;
-
-            }} else if (linhaSelecionada instanceof Cliente) {
+                }
+            } else if (linhaSelecionada instanceof Cliente) {
                 Cliente clienteSelecionado = (Cliente) linhaSelecionada;
                 int idCliente = clienteSelecionado.getId();
-
-                Integer resultado = excluirClientes.excluirCliente(loginuser, Integer.parseInt(id));
+                loginuser = usuario.getUsername();
+                Integer resultado = excluirClientes.excluirCliente(loginuser, idCliente);
 
                 switch (resultado) {
                     case 0:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
                         break;
                     case 3:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Não foi permitido excluir esse cliente. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Não foi permitido excluir esse cliente. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
                         break;
                     case 4:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Exclusão realizada com sucesso.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Exclusão realizada com sucesso.");
                         break;
                     default:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Ocorreu um erro.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Ocorreu um erro.");
                         break;
-
-            }} else if (linhaSelecionada instanceof LocacaoA) {
+                }
+            } else if (linhaSelecionada instanceof LocacaoA) {
+                loginuser = usuario.getUsername();
                 LocacaoA locacaoSelecionada = (LocacaoA) linhaSelecionada;
                 int idLocacao = locacaoSelecionada.getId();
 
-                Integer resultado = excluirLocacoes.excluirLocacao(loginuser, Integer.parseInt(id));
+                Integer resultado = excluirLocacoes.excluirLocacao(loginuser, idLocacao);
 
                 switch (resultado) {
                     case 0:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Você não tem acesso de moderador para realizar exclusão de locações.");
                         break;
                     case 4:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Exclusão realizada com sucesso.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Exclusão realizada com sucesso.");
                         break;
                     default:
-                    textStatus.setVisible(true);
-                    textStatus.setText("Ocorreu um erro.");
+                        textStatus.setVisible(true);
+                        textStatus.setText("Ocorreu um erro.");
                         break;
-        }}
+                }
+            }
         } else {
             textStatus.setVisible(true);
             textStatus.setText("Não há linhas selecionadas.");
-            break;
         }
     }
+}
