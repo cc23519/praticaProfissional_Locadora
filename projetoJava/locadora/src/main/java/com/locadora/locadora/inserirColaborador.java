@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.locadora.locadora;
 
 import static com.locadora.locadora.criarConexaoBanco.criarConexaoBancoDados;
@@ -12,12 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author guies
- */
 public class inserirColaborador {
-public int inserirColaborador(String nome, String sobrenome, String tipoAcesso, String usuarioColab, String senha) {
+public int inserirColaborador(String nome, String sobrenome, Integer tipoAcesso, String usuarioColab, String senha) {
     String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
     int idColaborador = -1;
 
@@ -30,7 +22,7 @@ public int inserirColaborador(String nome, String sobrenome, String tipoAcesso, 
 
         stmtColaborador.setString(1, nome);
         stmtColaborador.setString(2, sobrenome);
-        stmtColaborador.setString(3, tipoAcesso);
+        stmtColaborador.setInt(3, tipoAcesso);
         stmtColaborador.executeUpdate();
 
         ResultSet generatedKeys = stmtColaborador.getGeneratedKeys();

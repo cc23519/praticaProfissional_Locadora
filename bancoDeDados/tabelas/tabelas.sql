@@ -11,7 +11,7 @@ CREATE TABLE esquemaLocadora.tabelaColaborador (
     idColaborador INT IDENTITY(1,1) PRIMARY KEY,
     nomeColab varchar(30) NOT NULL,
     sobrenomeColab varchar(30) NOT NULL,
-    tipoAcesso varchar(10) NOT NULL
+    tipoAcesso INT NOT NULL
 );
 
 CREATE TABLE esquemaLocadora.tabelaColaboradorCred (

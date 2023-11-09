@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.locadora.locadora;
 
 import javafx.fxml.FXML;
@@ -43,16 +39,13 @@ public class telaCadastroColaboradoresController {
         comboboxTipo.setItems(Opcoes);
         comboboxTipo.setValue("Consulta");
         
-        comboboxTipo.setOnAction(event ->{
-            String tipoColaborador = (String) comboboxTipo.getValue();
-        });
-        
         buttonCriarColaborador.setOnAction(event -> {
             String primeironome = fieldPrimeiroNome.getText();
             String sobrenome = fieldSegundoNome.getText();
             String user = fieldUser.getText();
             String senha = fieldSenha.getText();
-            String tipoColaborador = (String) comboboxTipo.getValue();
+            
+            int tipoColaborador = (comboboxTipo.getValue().equals("Consulta")) ? 1 : 2;
             
             inserirColaborador inserirColaborador = new inserirColaborador();
             int idColaborador = inserirColaborador.inserirColaborador(primeironome, sobrenome, tipoColaborador, user, senha);
