@@ -1,6 +1,7 @@
 package com.locadora.locadora;
 
 public class Carro {
+
     private int id;
     private String modelo;
     private String placa;
@@ -16,25 +17,31 @@ public class Carro {
         this.placa = placa;
         this.chassi = chassi;
         this.valor = valor;
-        this.status = status;  
+        this.status = status;
     }
 
-    public Carro(int id, String modelo, String placa, String chassi, String valor, String status, String ano, String preco) {
+    public Carro(int id, String modelo, String placa, String chassi, String valor, String ano, String preco) {
         this.id = id;
         this.modelo = modelo;
         this.placa = placa;
         this.chassi = chassi;
         this.valor = valor;
-        this.status = status;
         this.ano = ano;
+        this.preco = preco;
+    }
+
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+
+    public void setPreco(String preco) {
         this.preco = preco;
     }
 
     public String getPreco() {
         return preco;
     }
-    
-    
+
     public int getId() {
         return id;
     }
@@ -46,8 +53,7 @@ public class Carro {
     public String getAno() {
         return ano;
     }
-    
-    
+
     public String getPlaca() {
         return placa;
     }
