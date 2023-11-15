@@ -1,5 +1,5 @@
 -- EXCLUSÃO DE CARROS
-ALTER PROCEDURE stExcluirCarros
+CREATE PROCEDURE stExcluirCarros
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -42,7 +42,7 @@ END
 
 
 -- EXCLUSÃO DE SEGUROS
-ALTER PROCEDURE stExcluirSeguros
+CREATE PROCEDURE stExcluirSeguros
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -87,7 +87,7 @@ BEGIN
 END
 
 -- EXCLUSÃO DE CLIENTES
-alter PROCEDURE stExcluirClientes
+CREATE PROCEDURE stExcluirClientes
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -133,7 +133,7 @@ BEGIN
 END
 
 -- EXCLUSÃO DE LOCAÇÕES ATIVAS
-ALTER PROCEDURE stExcluirLocacoes
+CREATE PROCEDURE stExcluirLocacoes
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -165,3 +165,133 @@ BEGIN
 END
 
 
+
+
+
+
+
+-- ALTERAR CARROS
+CREATE PROCEDURE stAlterarCarros
+    @usuario VARCHAR(15),
+    @idexclusao INT,
+    @chassi VARCHAR(17),
+    @placa varchar(7),
+    @modelo varchar(30),
+    @ano varchar(4),
+    @valor money,
+    @resultado INT OUTPUT
+AS 
+BEGIN
+    DECLARE @tipoacesso INT;
+    DECLARE @id INT;
+    
+	SELECT @tipoAcesso = c.tipoAcesso
+	FROM esquemaLocadora.tabelaColaborador c
+	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+	WHERE cc.usuarioColab = @usuario; 
+
+    IF @tipoacesso = 1
+    BEGIN
+        PRINT 'ACESSO NEGADO';
+        RETURN 0; -- Retorne um código de acesso negado
+    END
+    ELSE
+    BEGIN
+        PRINT 'ACESSO PERMITIDO';
+        BEGIN
+            UPDATE esquemaLocadora.tabelaCarro SET chassiCarro = @chassi, 
+            placaCarro = @placa,
+            modeloCarro = @modelo,
+            anoCarro = @ano,
+            valor = valor
+            WHERE idCarro = @idexclusao;
+            PRINT 'Alteração Realizada';
+            RETURN 4; -- Retorne um código de alteração realizada
+        END
+    END
+END
+
+
+
+-- -- ALTERAR CLIENTES
+-- CREATE PROCEDURE stAlterarCarros
+--     @usuario VARCHAR(15),
+--     @idexclusao INT,
+--     @chassi VARCHAR(17),
+--     @placa varchar(7),
+--     @modelo varchar(30),
+--     @ano varchar(4),
+--     @valor money,
+--     @resultado INT OUTPUT
+-- AS 
+-- BEGIN
+--     DECLARE @tipoacesso INT;
+--     DECLARE @id INT;
+    
+-- 	SELECT @tipoAcesso = c.tipoAcesso
+-- 	FROM esquemaLocadora.tabelaColaborador c
+-- 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+-- 	WHERE cc.usuarioColab = @usuario; 
+
+--     IF @tipoacesso = 1
+--     BEGIN
+--         PRINT 'ACESSO NEGADO';
+--         RETURN 0; -- Retorne um código de acesso negado
+--     END
+--     ELSE
+--     BEGIN
+--         PRINT 'ACESSO PERMITIDO';
+--         BEGIN
+--             UPDATE esquemaLocadora.tabelaCarro SET chassiCarro = @chassi, 
+--             placaCarro = @placa,
+--             modeloCarro = @modelo,
+--             anoCarro = @ano,
+--             valor = valor
+--             WHERE idCarro = @idexclusao;
+--             PRINT 'Alteração Realizada';
+--             RETURN 4; -- Retorne um código de alteração realizada
+--         END
+--     END
+-- END
+
+
+-- -- ALTERAR SEGUROS
+-- CREATE PROCEDURE stAlterarCarros
+--     @usuario VARCHAR(15),
+--     @idexclusao INT,
+--     @chassi VARCHAR(17),
+--     @placa varchar(7),
+--     @modelo varchar(30),
+--     @ano varchar(4),
+--     @valor money,
+--     @resultado INT OUTPUT
+-- AS 
+-- BEGIN
+--     DECLARE @tipoacesso INT;
+--     DECLARE @id INT;
+    
+-- 	SELECT @tipoAcesso = c.tipoAcesso
+-- 	FROM esquemaLocadora.tabelaColaborador c
+-- 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+-- 	WHERE cc.usuarioColab = @usuario; 
+
+--     IF @tipoacesso = 1
+--     BEGIN
+--         PRINT 'ACESSO NEGADO';
+--         RETURN 0; -- Retorne um código de acesso negado
+--     END
+--     ELSE
+--     BEGIN
+--         PRINT 'ACESSO PERMITIDO';
+--         BEGIN
+--             UPDATE esquemaLocadora.tabelaCarro SET chassiCarro = @chassi, 
+--             placaCarro = @placa,
+--             modeloCarro = @modelo,
+--             anoCarro = @ano,
+--             valor = valor
+--             WHERE idCarro = @idexclusao;
+--             PRINT 'Alteração Realizada';
+--             RETURN 4; -- Retorne um código de alteração realizada
+--         END
+--     END
+-- END
