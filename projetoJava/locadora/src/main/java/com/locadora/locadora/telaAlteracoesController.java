@@ -292,14 +292,17 @@ public class telaAlteracoesController {
                 loginuser = usuario.getUsername();
                 
                 Carro carroSelecionado = (Carro) linhaSelecionada;
-                String modelo = carroSelecionado.getModelo();
-                String placa = carroSelecionado.getPlaca();
-                String ano = carroSelecionado.getAno();
-                String chassi = carroSelecionado.getChassi();
-                String valor = carroSelecionado.getValor();
-                String preco = carroSelecionado.getPreco();
+                Carro dadoscarro = new Carro(
+                    carroSelecionado.getId(),
+                    carroSelecionado.getModelo(),
+                    carroSelecionado.getPlaca(),
+                    carroSelecionado.getAno(),
+                    carroSelecionado.getChassi(),
+                    carroSelecionado.getValor()
+                );
                 
-                Integer resultado = alterarCarro.alterarCarro(chassi, placa, modelo, ano, preco);
+                abrirTelas abrir = new abrirTelas();
+                abrir.abrirTelaComDadosCarro("telaCarro.fxml","Voyage - Alterar carro "+carroSelecionado.getId(), dadoscarro);
 
                 switch (resultado) {
                     case 0:
@@ -320,12 +323,18 @@ public class telaAlteracoesController {
                         break;
                 }
             } else if (linhaSelecionada instanceof Seguro) {
-                Seguro seguroSelecionado = (Seguro) linhaSelecionada;
-                int idSeguro = seguroSelecionado.getId();
                 loginuser = usuario.getUsername();
-                System.out.print(loginuser);
-                Integer resultado = excluirSeguro.excluirSeguro(loginuser, idSeguro);
-
+                Seguro seguroSelecionado = (Seguro) linhaSelecionada;
+                Seguro dadosseguro = new Seguro(
+                    seguroSelecionado.getId(),
+                    seguroSelecionado.getTipo(),
+                    seguroSelecionado.getPreco(),
+                    seguroSelecionado.getDescricao()
+                );
+               
+                abrirTelas abrir = new abrirTelas();
+                abrir.abrirTelaComDadosSeguros("telaSeguro.fxml","Voyage - Alterar seguro "+seguroSelecionado.getId(), dadosseguro);
+                
                 switch (resultado) {
                     case 0:
                         textStatus.setVisible(true);
@@ -345,10 +354,27 @@ public class telaAlteracoesController {
                         break;
                 }
             } else if (linhaSelecionada instanceof Cliente) {
-                Cliente clienteSelecionado = (Cliente) linhaSelecionada;
-                int idCliente = clienteSelecionado.getId();
                 loginuser = usuario.getUsername();
-                Integer resultado = excluirClientes.excluirCliente(loginuser, idCliente);
+                Cliente clienteSelecionado = (Cliente) linhaSelecionada;
+                
+                Cliente dadoscliente = new Cliente(
+                    clienteSelecionado.getId(),
+                    clienteSelecionado.getNome(),
+                    clienteSelecionado.getCpf(),
+                    clienteSelecionado.getTipoTelefone(),
+                    clienteSelecionado.getTelefone(),
+                    clienteSelecionado.getRua(),
+                    clienteSelecionado.getNumero(),
+                    clienteSelecionado.getBairro(),
+                    clienteSelecionado.getCidade(),
+                    clienteSelecionado.getEstado(),
+                    clienteSelecionado.getCep(),
+                    clienteSelecionado.getComplemento()
+                );
+                
+                abrirTelas abrir = new abrirTelas();
+                abrir.abrirTelaComDadosCliente("telaCliente.fxml","Voyage - Alterar Cliente "+clienteSelecionado.getId(), dadoscliente);
+
 
                 switch (resultado) {
                     case 0:
