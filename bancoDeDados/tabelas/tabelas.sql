@@ -97,28 +97,35 @@ CREATE TABLE esquemaLocadora.tabelaLocacao_Histórico (
 --Criando as relações entre as tabelas
 ALTER TABLE esquemaLocadora.tabelaClienteContatos ADD CONSTRAINT FK_tabelaClienteContatos
     FOREIGN KEY (FK_idClienteContatos)
-    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes)
+    ON UPDATE CASCADE;
  
 ALTER TABLE esquemaLocadora.tabelaClienteEndereco ADD CONSTRAINT FK_tabelaClienteEndereco
     FOREIGN KEY (FK_idClienteEndereco)
-    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes)
+    ON UPDATE CASCADE;
  
 ALTER TABLE esquemaLocadora.tabelaClienteCredenciais ADD CONSTRAINT FK_tabelaClienteCredenciais
     FOREIGN KEY (FK_idClienteCred)
-    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes)
+    ON UPDATE CASCADE;
  
 ALTER TABLE esquemaLocadora.tabelaLocacao_Ativa ADD CONSTRAINT FK_tabelaLocacao_AtivaCliente
     FOREIGN KEY (FK_idClienteLocacao)
-    REFERENCES esquemaLocadora.tabelaCliente (idClientes);
+    REFERENCES esquemaLocadora.tabelaCliente (idClientes)
+    ON UPDATE CASCADE;
  
 ALTER TABLE esquemaLocadora.tabelaLocacao_Ativa ADD CONSTRAINT FK_tabelaLocacao_AtivaSeguro
     FOREIGN KEY (FK_idSeguroLocacao)
-    REFERENCES esquemaLocadora.tabelaSeguros (idSeguro);
+    REFERENCES esquemaLocadora.tabelaSeguros (idSeguro)
+    ON UPDATE CASCADE;
  
 ALTER TABLE esquemaLocadora.tabelaLocacao_Ativa ADD CONSTRAINT FK_tabelaLocacao_AtivaCarro
     FOREIGN KEY (FK_idCarroLocacao)
-    REFERENCES esquemaLocadora.tabelaCarro (idCarro);
+    REFERENCES esquemaLocadora.tabelaCarro (idCarro)
+    ON UPDATE CASCADE;
 
 ALTER TABLE esquemaLocadora.tabelaColaboradorCred ADD CONSTRAINT FK_tabelaColaboradorCred_3
     FOREIGN KEY (FK_idColaborador)
-    REFERENCES esquemaLocadora.tabelaColaborador (idColaborador);
+    REFERENCES esquemaLocadora.tabelaColaborador (idColaborador)
+    ON UPDATE CASCADE;
