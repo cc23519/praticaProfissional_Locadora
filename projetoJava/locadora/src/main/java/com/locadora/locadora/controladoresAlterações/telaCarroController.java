@@ -2,6 +2,7 @@ package com.locadora.locadora.controladoresAlterações;
 
 import com.locadora.locadora.Carro;
 import com.locadora.locadora.usuario;
+import javafx.fxml.FXML;
 
 public class telaCarroController {
 

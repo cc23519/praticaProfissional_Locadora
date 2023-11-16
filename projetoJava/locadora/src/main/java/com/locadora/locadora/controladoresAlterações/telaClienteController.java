@@ -43,7 +43,7 @@ public class telaClienteController {
     
     
     private Integer id;
-    private String loginuser, nome, cpf, tipo, telefone, rua, numero, bairro, cidade, estado, cep, complemento
+    private String loginuser, nome, cpf, tipo, telefone, rua, numero, bairro, cidade, estado, cep, complemento;
     
     @FXML
     public void initialize() {

@@ -3,11 +3,12 @@ package com.locadora.locadora.controladoresAlterações;
 
 import com.locadora.locadora.Seguro;
 import com.locadora.locadora.usuario;
+import javafx.fxml.FXML;
 
 public class telaSeguroController {
     
     private Integer id;
-    private String tipo, preco, descricao, loginuser; 
+    private String tipo, preco, descricao, loginuser;
     
     
     @FXML

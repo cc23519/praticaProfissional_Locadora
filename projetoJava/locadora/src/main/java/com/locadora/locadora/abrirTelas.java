@@ -68,7 +68,7 @@ public class abrirTelas {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(nomedocumento));
             Parent root = loader.load();
 
-            telaClienteController controlador = loader.getController();
+            telaSeguroController controlador = loader.getController();
 
             controlador.inicializarDadosSeguro(dadosCliente);
 
