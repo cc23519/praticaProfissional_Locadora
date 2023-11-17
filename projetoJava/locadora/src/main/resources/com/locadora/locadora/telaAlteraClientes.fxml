@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -7,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="304.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="304.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.controladoresAlterações.telaClienteController">
    <top>
       <GridPane prefHeight="43.0" prefWidth="503.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -42,7 +43,7 @@
                   <HBox spacing="10.0">
                      <children>
                         <Label text="Nome" />
-                        <TextField prefHeight="25.0" prefWidth="169.0" />
+                        <TextField fx:id="textfieldNome" prefHeight="25.0" prefWidth="169.0" />
                      </children>
                   </HBox>
                   <HBox>
@@ -51,7 +52,7 @@
                            <padding>
                               <Insets right="10.0" />
                            </padding></Label>
-                        <TextField prefHeight="25.0" prefWidth="188.0" />
+                        <TextField fx:id="textfieldSobrenome" prefHeight="25.0" prefWidth="188.0" />
                      </children>
                   </HBox>
                </children>
@@ -61,13 +62,13 @@
                   <HBox spacing="10.0">
                      <children>
                         <Label text="Tipo Telefone" />
-                        <ComboBox prefWidth="150.0" />
+                        <ComboBox fx:id="comboboxTipo" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
                      <children>
                         <Label text="Telefone" />
-                        <TextField prefHeight="25.0" prefWidth="168.0" />
+                        <TextField fx:id="textfieldTelefone" prefHeight="25.0" prefWidth="168.0" />
                      </children>
                   </HBox>
                </children>
@@ -81,7 +82,7 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="276.0" />
+                        <TextField fx:id="textfieldRua" prefHeight="25.0" prefWidth="276.0" />
                      </children>
                   </HBox>
                   <HBox>
@@ -91,7 +92,7 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="70.0" />
+                        <TextField fx:id="textfieldNumero" prefHeight="25.0" prefWidth="70.0" />
                      </children>
                   </HBox>
                </children>
@@ -105,7 +106,7 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="191.0" />
+                        <TextField fx:id="textfieldBairro" prefHeight="25.0" prefWidth="191.0" />
                      </children>
                   </HBox>
                   <HBox>
@@ -115,7 +116,7 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="176.0" />
+                        <TextField fx:id="textfieldCidade" prefHeight="25.0" prefWidth="176.0" />
                      </children>
                   </HBox>
                </children>
@@ -129,7 +130,7 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="191.0" />
+                        <ComboBox fx:id="comboboxEstado" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox>
@@ -139,7 +140,7 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="188.0" />
+                        <TextField fx:id="textfieldCep" prefHeight="25.0" prefWidth="188.0" />
                      </children>
                   </HBox>
                </children>
@@ -153,20 +154,44 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="376.0" />
+                        <TextField fx:id="textfieldComplemento" prefHeight="25.0" prefWidth="376.0" />
                      </children>
                   </HBox>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Finalizar alteração">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-            </Button>
+            <HBox>
+               <children>
+                  <Button fx:id="buttonFinalizar" mnemonicParsing="false" text="Finalizar alteração">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="buttonSair" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Sair">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
          </BorderPane.margin>
       </VBox>
    </center>
+   <bottom>
+      <GridPane style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="10.0" prefWidth="53.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="450.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Status: " GridPane.halignment="RIGHT" />
+            <Label fx:id="statusCliente" prefHeight="17.0" prefWidth="434.0" text="..." GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+   </bottom>
 </BorderPane>
