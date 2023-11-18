@@ -6,8 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class alterarClientes {
-        public int alterarCliente (String nome, String sobrenome, String tipo, String telefone, String rua, Integer numero,
-        String bairro, String cidade, String estado, String cep, String complemento) {
+        public int alterarCliente (String nome, String sobrenome, String tipo, String ddd, String telefone, String rua, String numero,
+        String bairro, String cidade, String estado, String cep, String complemento, Integer id) {
         int resultado = -1;
         try (Connection conn = criarConexaoBancoDados();
              CallableStatement stmt = conn.prepareCall("{call stExcluirLocacoes(?, ?)}")) {
@@ -15,14 +15,16 @@ public class alterarClientes {
             stmt.setString(1, nome);
             stmt.setString(2, sobrenome);
             stmt.setString(3, tipo);
-            stmt.setString(4, telefone);
-            stmt.setString(5, rua);
-            stmt.setInt(6, numero);
-            stmt.setString(7, bairro);
-            stmt.setString(8, cidade);
-            stmt.setString(9, estado);
-            stmt.setString(10, cep);
-            stmt.setString(11, complemento);
+            stmt.setString(4, ddd);
+            stmt.setString(5, telefone);
+            stmt.setString(6, rua);
+            stmt.setString(7, numero);
+            stmt.setString(8, bairro);
+            stmt.setString(9, cidade);
+            stmt.setString(10, estado);
+            stmt.setString(11, cep);
+            stmt.setString(12, complemento);
+            stmt.setInt(13, id);
 
             stmt.execute();
 

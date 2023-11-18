@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class alterarSeguros {
-         public int alterarSeguro (String tipo, String descricao, Integer preco) {
+         public int alterarSeguro (String tipo, String descricao, Integer preco, Integer id) {
         int resultado = -1;
         try (Connection conn = criarConexaoBancoDados();
              CallableStatement stmt = conn.prepareCall("{call stExcluirLocacoes(?, ?)}")) {
@@ -14,6 +14,7 @@ public class alterarSeguros {
             stmt.setString(1, tipo);
             stmt.setString(2, descricao);
             stmt.setInt(3, preco);
+            stmt.setInt(4, id);
 
             stmt.execute();
 

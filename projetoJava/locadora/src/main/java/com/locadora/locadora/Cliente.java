@@ -4,7 +4,9 @@ public class Cliente {
 
     private int id;
     private String nome;
+    private String sobrenome;
     private String cpf;
+    private String ddd;
     private String tipoTelefone;
     private String telefone;
     private String endereco1;
@@ -18,7 +20,7 @@ public class Cliente {
     private String cep;
     private String complemento;
 
-    public Cliente(int id, String nome, String cpf, String tipoTelefone, String telefone, String endereco1, String endereco2) {
+    public Cliente(int id, String nome, String cpf, String tipoTelefone, String telefone, String endereco1, String endereco2, String numero1, String bairro1, String cidade1, String estado1, String cep1, String complemento1) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -28,11 +30,13 @@ public class Cliente {
         this.endereco2 = endereco2;
     }
 
-    public Cliente(int id, String nome, String cpf, String tipoTelefone, String telefone, String rua, String numero, String bairro, String cidade, String estado, String cep, String complemento) {
+    public Cliente(int id, String nome, String sobrenome, String cpf, String tipoTelefone,String ddd, String telefone, String rua, String numero, String bairro, String cidade, String estado, String cep, String complemento) {
         this.id = id;
         this.nome = nome;
+        this.sobrenome = sobrenome;
         this.cpf = cpf;
         this.tipoTelefone = tipoTelefone;
+        this.ddd = ddd;
         this.telefone = telefone;
         this.rua = rua;
         this.numero = numero;
@@ -43,8 +47,22 @@ public class Cliente {
         this.complemento = complemento;
     }
 
+    public String getDdd() {
+        return ddd;
+    }
+    
+    
+
     public String getRua() {
         return rua;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
     }
 
     public String getNumero() {
