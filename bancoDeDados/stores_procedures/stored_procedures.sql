@@ -213,85 +213,148 @@ END
 
 
 
--- -- ALTERAR CLIENTES
--- CREATE PROCEDURE stAlterarCarros
---     @usuario VARCHAR(15),
---     @idexclusao INT,
---     @chassi VARCHAR(17),
---     @placa varchar(7),
---     @modelo varchar(30),
---     @ano varchar(4),
---     @valor money,
---     @resultado INT OUTPUT
--- AS 
--- BEGIN
---     DECLARE @tipoacesso INT;
---     DECLARE @id INT;
+ -- ALTERAR CLIENTES
+ CREATE PROCEDURE stAlterarClientes
+     @usuario VARCHAR(15),
+     @idexclusao INT,
+	 @nome varchar(30),
+	 @sobrenome varchar(30),
+	 @cpf varchar(11),
+	 @tipotelefone varchar(10),
+	 @ddd varchar(2),
+	 @numero varchar(11),
+	 @rua varchar(30),
+	 @numerocasa varchar(5),
+	 @bairro varchar(30),
+	 @cidade varchar(15),
+	 @estado varchar(15),
+	 @cep varchar(8),
+	 @complemento varchar(40),
+     @resultado INT OUTPUT
+ AS 
+ BEGIN
+     DECLARE @tipoacesso INT;
+     DECLARE @id INT;
     
--- 	SELECT @tipoAcesso = c.tipoAcesso
--- 	FROM esquemaLocadora.tabelaColaborador c
--- 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
--- 	WHERE cc.usuarioColab = @usuario; 
+ 	SELECT @tipoAcesso = c.tipoAcesso
+ 	FROM esquemaLocadora.tabelaColaborador c
+ 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+ 	WHERE cc.usuarioColab = @usuario; 
 
---     IF @tipoacesso = 1
---     BEGIN
---         PRINT 'ACESSO NEGADO';
---         RETURN 0; -- Retorne um código de acesso negado
---     END
---     ELSE
---     BEGIN
---         PRINT 'ACESSO PERMITIDO';
---         BEGIN
---             UPDATE esquemaLocadora.tabelaCarro SET chassiCarro = @chassi, 
---             placaCarro = @placa,
---             modeloCarro = @modelo,
---             anoCarro = @ano,
---             valor = valor
---             WHERE idCarro = @idexclusao;
---             PRINT 'Alteração Realizada';
---             RETURN 4; -- Retorne um código de alteração realizada
---         END
---     END
--- END
+     IF @tipoacesso = 1
+     BEGIN
+         PRINT 'ACESSO NEGADO';
+         RETURN 0; -- Retorne um código de acesso negado
+     END
+     ELSE
+     BEGIN
+         PRINT 'ACESSO PERMITIDO';
+         BEGIN
+		 select * from esquemaLocadora.tabelaCliente
+             UPDATE esquemaLocadora.tabelaClienteEndereco SET 
+			 ruaCliente = @rua,
+			 numeroCliente = @numerocasa,
+			 bairroCliente = @bairro,
+			 cidadeCliente = @cidade,
+			 estadoCliente = @estado,
+			 cepCliente = @cep,
+			 complemento = complemento
+             WHERE FK_idClienteEndereco = @idexclusao;
+
+			 UPDATE esquemaLocadora.tabelaClienteContatos SET 
+			 tipoTelefone = @tipotelefone,
+			 dddTelefone = @ddd,
+			 numeroTelefone = @numero
+             WHERE FK_idClienteContatos = @idexclusao;
+
+			 UPDATE esquemaLocadora.tabelaCliente SET 
+			 nomeCliente = @nome,
+			 sobrenomeCliente = @sobrenome,
+			 cpfCliente = @cpf
+             WHERE idClientes = @idexclusao;
+
+             PRINT 'Alteração Realizada';
+             RETURN 4; -- Retorne um código de alteração realizada
+         END
+     END
+ END
 
 
--- -- ALTERAR SEGUROS
--- CREATE PROCEDURE stAlterarCarros
---     @usuario VARCHAR(15),
---     @idexclusao INT,
---     @chassi VARCHAR(17),
---     @placa varchar(7),
---     @modelo varchar(30),
---     @ano varchar(4),
---     @valor money,
---     @resultado INT OUTPUT
--- AS 
--- BEGIN
---     DECLARE @tipoacesso INT;
---     DECLARE @id INT;
+-- ALTERAR Carros
+CREATE PROCEDURE stAlterarCarros
+     @usuario VARCHAR(15),
+     @idexclusao INT,
+     @chassi VARCHAR(17),
+     @placa varchar(7),
+     @modelo varchar(30),
+     @ano varchar(4),
+     @valor money,
+     @resultado INT OUTPUT
+AS 
+BEGIN
+     DECLARE @tipoacesso INT;
+     DECLARE @id INT;
     
--- 	SELECT @tipoAcesso = c.tipoAcesso
--- 	FROM esquemaLocadora.tabelaColaborador c
--- 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
--- 	WHERE cc.usuarioColab = @usuario; 
+ 	SELECT @tipoAcesso = c.tipoAcesso
+ 	FROM esquemaLocadora.tabelaColaborador c
+ 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+ 	WHERE cc.usuarioColab = @usuario; 
 
---     IF @tipoacesso = 1
---     BEGIN
---         PRINT 'ACESSO NEGADO';
---         RETURN 0; -- Retorne um código de acesso negado
---     END
---     ELSE
---     BEGIN
---         PRINT 'ACESSO PERMITIDO';
---         BEGIN
---             UPDATE esquemaLocadora.tabelaCarro SET chassiCarro = @chassi, 
---             placaCarro = @placa,
---             modeloCarro = @modelo,
---             anoCarro = @ano,
---             valor = valor
---             WHERE idCarro = @idexclusao;
---             PRINT 'Alteração Realizada';
---             RETURN 4; -- Retorne um código de alteração realizada
---         END
---     END
--- END
+     IF @tipoacesso = 1
+     BEGIN
+         PRINT 'ACESSO NEGADO';
+         RETURN 0; -- Retorne um código de acesso negado
+     END
+     ELSE
+     BEGIN
+         PRINT 'ACESSO PERMITIDO';
+         BEGIN
+             UPDATE esquemaLocadora.tabelaCarro SET chassiCarro = @chassi, 
+             placaCarro = @placa,
+             modeloCarro = @modelo,
+             anoCarro = @ano,
+             precoDiaria_Carro = @valor
+             WHERE idCarro = @idexclusao;
+             PRINT 'Alteração Realizada';
+             RETURN 4; -- Retorne um código de alteração realizada
+         END
+     END
+ END
+
+ -- Alterar Seguros
+ CREATE PROCEDURE stAlterarSeguros
+     @usuario VARCHAR(15),
+     @idexclusao INT,
+     @tipo VARCHAR(30),
+     @descricao varchar(50),
+     @preco money,
+     @resultado INT OUTPUT
+AS 
+BEGIN
+     DECLARE @tipoacesso INT;
+     DECLARE @id INT;
+    
+ 	SELECT @tipoAcesso = c.tipoAcesso
+ 	FROM esquemaLocadora.tabelaColaborador c
+ 	INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+ 	WHERE cc.usuarioColab = @usuario; 
+
+     IF @tipoacesso = 1
+     BEGIN
+         PRINT 'ACESSO NEGADO';
+         RETURN 0; -- Retorne um código de acesso negado
+     END
+     ELSE
+     BEGIN
+         PRINT 'ACESSO PERMITIDO';
+         BEGIN
+             UPDATE esquemaLocadora.tabelaSeguros 
+			 SET tipoSeguro = @tipo,
+             descricaoSeguro = @descricao,
+             precoSeguro = @preco
+             WHERE idSeguro = @idexclusao;
+             PRINT 'Alteração Realizada';
+             RETURN 4; -- Retorne um código de alteração realizada
+         END
+     END
+ END
