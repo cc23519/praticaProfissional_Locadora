@@ -246,7 +246,7 @@ public class telaExcluirController {
                 String endereco1 = resultSet.getString("Endereço1");
                 String endereco2 = resultSet.getString("Endereco2");
 
-                Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2);
+                Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2, clienteSelecionado.getNumero(), clienteSelecionado.getBairro(), clienteSelecionado.getCidade(), clienteSelecionado.getEstado(), clienteSelecionado.getCep(), clienteSelecionado.getComplemento());
                 clientes.add(cliente);
             }
             tabela.setItems(FXCollections.observableArrayList(clientes));

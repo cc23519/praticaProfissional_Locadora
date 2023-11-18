@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class telaCarroController {
 
@@ -43,7 +44,10 @@ public class telaCarroController {
 
     @FXML
     public void initialize() {
-        
+        buttonSair.setOnAction(event -> {
+            Stage stage = (Stage) buttonSair.getScene().getWindow();
+            stage.close();
+        });
     }
 
     @FXML

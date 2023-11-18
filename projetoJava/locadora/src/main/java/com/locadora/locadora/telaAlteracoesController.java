@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class telaAlteracoesController {
+
     @FXML
     private Button buttonClientes;
 
@@ -26,16 +27,16 @@ public class telaAlteracoesController {
 
     @FXML
     private Button buttonSeguros;
-    
+
     @FXML
     private Button buttonAlterarSelecionado;
-        
+
     @FXML
     private TabPane tabAlteracao;
-  
+
     @FXML
     private Label textStatus;
-    
+
     @FXML
     private TableView<Cliente> tableCliente;
 
@@ -95,22 +96,22 @@ public class telaAlteracoesController {
 
     @FXML
     private TableColumn<Seguro, String> colunmdescricaoSeguro;
-    
+
     @FXML
     private Tab tabCliente;
-    
+
     @FXML
     private Tab tabCarro;
-    
+
     @FXML
     private Tab tabSeguro;
-    
+
     @FXML
     private Tab tabAtivas;
-    
+
     Connection connection = criarConexaoBanco.criarConexaoBancoDados();
-    
-    String loginuser; 
+
+    String loginuser;
     
     @FXML
     public void initialize(){
@@ -181,7 +182,7 @@ public class telaAlteracoesController {
                 String endereco1 = resultSet.getString("Endereço1");
                 String endereco2 = resultSet.getString("Endereco2");
 
-                Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2);
+                Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2, clienteSelecionado.getNumero(), clienteSelecionado.getBairro(), clienteSelecionado.getCidade(), clienteSelecionado.getEstado(), clienteSelecionado.getCep(), clienteSelecionado.getComplemento());
                 clientes.add(cliente);
             }
             tabela.setItems(FXCollections.observableArrayList(clientes));
@@ -301,24 +302,7 @@ public class telaAlteracoesController {
                 abrirTelas abrir = new abrirTelas();
                 abrir.abrirTelaComDadosCarro("telaCarro.fxml","Voyage - Alterar carro "+carroSelecionado.getId(), dadoscarro);
 
-                switch (resultado) {
-                    case 0:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Você não tem acesso de moderador para realizar exclusão de carros.");
-                        break;
-                    case 3:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Não foi permitido excluir esse carro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
-                        break;
-                    case 4:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Exclusão realizada com sucesso.");
-                        break;
-                    default:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Ocorreu um erro.");
-                        break;
-                }
+
             } else if (linhaSelecionada instanceof Seguro) {
                 loginuser = usuario.getUsername();
                 Seguro seguroSelecionado = (Seguro) linhaSelecionada;
@@ -332,24 +316,6 @@ public class telaAlteracoesController {
                 abrirTelas abrir = new abrirTelas();
                 abrir.abrirTelaComDadosSeguros("telaSeguro.fxml","Voyage - Alterar seguro "+seguroSelecionado.getId(), dadosseguro);
                 
-                switch (resultado) {
-                    case 0:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Você não tem acesso de moderador para realizar exclusão de seguros.");
-                        break;
-                    case 3:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Não foi permitido excluir esse seguro. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
-                        break;
-                    case 4:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Exclusão realizada com sucesso.");
-                        break;
-                    default:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Ocorreu um erro.");
-                        break;
-                }
             } else if (linhaSelecionada instanceof Cliente) {
                 loginuser = usuario.getUsername();
                 Cliente clienteSelecionado = (Cliente) linhaSelecionada;
@@ -357,8 +323,10 @@ public class telaAlteracoesController {
                 Cliente dadoscliente = new Cliente(
                     clienteSelecionado.getId(),
                     clienteSelecionado.getNome(),
+                    clienteSelecionado.getSobrenome(),
                     clienteSelecionado.getCpf(),
                     clienteSelecionado.getTipoTelefone(),
+                    clienteSelecionado.getDdd(),
                     clienteSelecionado.getTelefone(),
                     clienteSelecionado.getRua(),
                     clienteSelecionado.getNumero(),
@@ -372,25 +340,6 @@ public class telaAlteracoesController {
                 abrirTelas abrir = new abrirTelas();
                 abrir.abrirTelaComDadosCliente("telaCliente.fxml","Voyage - Alterar Cliente "+clienteSelecionado.getId(), dadoscliente);
 
-
-                switch (resultado) {
-                    case 0:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Você não tem acesso de moderador para realizar exclusão de clientes.");
-                        break;
-                    case 3:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Não foi permitido excluir esse cliente. Motivo: Existe uma locação ativa utilizando esse dado. Excluir locação para prosseguir.");
-                        break;
-                    case 4:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Exclusão realizada com sucesso.");
-                        break;
-                    default:
-                        textStatus.setVisible(true);
-                        textStatus.setText("Ocorreu um erro.");
-                        break;
-                }
             }
         } else {
             textStatus.setVisible(true);

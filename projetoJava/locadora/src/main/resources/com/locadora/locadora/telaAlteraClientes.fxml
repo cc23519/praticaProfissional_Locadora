@@ -61,14 +61,16 @@
                <children>
                   <HBox spacing="10.0">
                      <children>
-                        <Label text="Tipo Telefone" />
-                        <ComboBox fx:id="comboboxTipo" prefWidth="150.0" />
+                        <Label prefHeight="17.0" prefWidth="92.0" text="Tipo Telefone" />
+                        <ComboBox fx:id="comboboxTipo" prefHeight="25.0" prefWidth="106.0" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
                      <children>
-                        <Label text="Telefone" />
-                        <TextField fx:id="textfieldTelefone" prefHeight="25.0" prefWidth="168.0" />
+                        <Label prefHeight="17.0" prefWidth="29.0" text="DDD" />
+                        <TextField fx:id="textfieldDDDTelefone" prefHeight="25.0" prefWidth="63.0" />
+                        <Label prefHeight="17.0" prefWidth="53.0" text="Telefone" />
+                        <TextField fx:id="textfieldTelefone" prefHeight="25.0" prefWidth="99.0" />
                      </children>
                   </HBox>
                </children>
