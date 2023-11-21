@@ -29,13 +29,13 @@ public class telaAlteracoesController {
     private Button buttonSeguros;
 
     @FXML
-    private Button buttonAlterarSelecionado;
+    private Label textStatus;
 
     @FXML
     private TabPane tabAlteracao;
 
     @FXML
-    private Label textStatus;
+    private Tab tabCliente;
 
     @FXML
     private TableView<Cliente> tableCliente;
@@ -62,6 +62,9 @@ public class telaAlteracoesController {
     private TableColumn<Cliente, String> colunmendereco2Cliente;
 
     @FXML
+    private Tab tabCarro;
+
+    @FXML
     private TableView<Carro> tableCarro;
 
     @FXML
@@ -81,6 +84,12 @@ public class telaAlteracoesController {
 
     @FXML
     private TableColumn<Carro, String> colunmstatusCarro;
+    
+    @FXML
+    private TableColumn<Carro, String> colunmanoCarro;
+
+    @FXML
+    private Tab tabSeguro;
 
     @FXML
     private TableView<Seguro> tableSeguros;
@@ -98,16 +107,7 @@ public class telaAlteracoesController {
     private TableColumn<Seguro, String> colunmdescricaoSeguro;
 
     @FXML
-    private Tab tabCliente;
-
-    @FXML
-    private Tab tabCarro;
-
-    @FXML
-    private Tab tabSeguro;
-
-    @FXML
-    private Tab tabAtivas;
+    private Button buttonAlterarSelecionado;
 
     Connection connection = criarConexaoBanco.criarConexaoBancoDados();
 
@@ -146,12 +146,11 @@ public class telaAlteracoesController {
                 }
             });
 
-
             tabSeguro.selectedProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue) {
                     preencherTabelaSeguro(connection, tableSeguros);
                 }
-            });                  
+            });           
         } else {
             textStatus.setVisible(true);
             textStatus.setText("Não foi possível conectar ao banco de dados.");
@@ -163,44 +162,45 @@ public class telaAlteracoesController {
         tabAlteracao.getSelectionModel().select(tab);
     }
 
-    @FXML
-    public void preencherTabelaClientes(Connection connection, TableView<Cliente> tabela) {
-        List<Cliente> clientes = new ArrayList<>();
+@FXML
+public void preencherTabelaClientes(Connection connection, TableView<Cliente> tabela) {
+    List<Cliente> clientes = new ArrayList<>();
 
-        String sql = "SELECT * from VconsultaClientes";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+    String sql = "SELECT * from VconsultaClientes";
+    try (PreparedStatement statement = connection.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
 
-            while (resultSet.next()) {
-                textStatus.setVisible(true);
-                textStatus.setText("Realizando consulta...");
-                int id = resultSet.getInt("idClientes");
-                String nome = resultSet.getString("NomeCompleto");
-                String cpf = resultSet.getString("cpfCliente");
-                String tipoTelefone = resultSet.getString("tipoTelefone");
-                String telefone = resultSet.getString("contatoCliente");
-                String endereco1 = resultSet.getString("Endereço1");
-                String endereco2 = resultSet.getString("Endereco2");
-
-                Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2, clienteSelecionado.getNumero(), clienteSelecionado.getBairro(), clienteSelecionado.getCidade(), clienteSelecionado.getEstado(), clienteSelecionado.getCep(), clienteSelecionado.getComplemento());
-                clientes.add(cliente);
-            }
-            tabela.setItems(FXCollections.observableArrayList(clientes));
-            colunmidCliente.setCellValueFactory(new PropertyValueFactory<>("id"));
-            colunmnomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            columncpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-            colunmtipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoTelefone"));
-            colunmtelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-            colunmendereco1Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco1"));
-            colunmendereco2Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco2"));
+        while (resultSet.next()) {
             textStatus.setVisible(true);
-            textStatus.setText("Consulta realizada");
-        } catch (SQLException e) {
-            textStatus.setVisible(true);
-            textStatus.setText("Ocorreu um erro: " + e);
+            textStatus.setText("Realizando consulta...");
+            int id = resultSet.getInt("idClientes");
+            String nome = resultSet.getString("NomeCompleto");
+            String cpf = resultSet.getString("cpfCliente");
+            String tipoTelefone = resultSet.getString("tipoTelefone");
+            String telefone = resultSet.getString("contatoCliente");
+            String endereco1 = resultSet.getString("Endereço1");
+            String endereco2 = resultSet.getString("Endereco2");
+
+
+            Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2);
+            clientes.add(cliente);
         }
+        tabela.setItems(FXCollections.observableArrayList(clientes));
+        colunmidCliente.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colunmnomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columncpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        colunmtipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoTelefone"));
+        colunmtelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        colunmendereco1Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco1"));
+        colunmendereco2Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco2"));
+        textStatus.setVisible(true);
+        textStatus.setText("Consulta realizada");
+    } catch (SQLException e) {
+        textStatus.setVisible(true);
+        textStatus.setText("Ocorreu um erro: " + e);
     }
-    
+}
+
     @FXML
     public void preencherTabelaCarro(Connection connection, TableView<Carro> tabela) {
         List<Carro> carros = new ArrayList<>();
@@ -275,7 +275,6 @@ public class telaAlteracoesController {
     @FXML
     public void alterarSelecionado() {
         Object linhaSelecionada = null;
-        alterarCarros alterarCarro = new alterarCarros();
 
         if (tabAlteracao.getSelectionModel().getSelectedItem() == tabCliente) {
             linhaSelecionada = tableCliente.getSelectionModel().getSelectedItem();
@@ -294,13 +293,14 @@ public class telaAlteracoesController {
                     carroSelecionado.getId(),
                     carroSelecionado.getModelo(),
                     carroSelecionado.getPlaca(),
+                        carroSelecionado.getChassi(),
+                    carroSelecionado.getValor(),
                     carroSelecionado.getAno(),
-                    carroSelecionado.getChassi(),
-                    carroSelecionado.getValor()
+                    carroSelecionado.getPreco()
                 );
                 
                 abrirTelas abrir = new abrirTelas();
-                abrir.abrirTelaComDadosCarro("telaCarro.fxml","Voyage - Alterar carro "+carroSelecionado.getId(), dadoscarro);
+                abrir.abrirTelaComDadosCarro("telaAlteraCarro.fxml","Voyage - Alterar carro "+carroSelecionado.getId(), dadoscarro);
 
 
             } else if (linhaSelecionada instanceof Seguro) {
@@ -314,7 +314,7 @@ public class telaAlteracoesController {
                 );
                
                 abrirTelas abrir = new abrirTelas();
-                abrir.abrirTelaComDadosSeguros("telaSeguro.fxml","Voyage - Alterar seguro "+seguroSelecionado.getId(), dadosseguro);
+                abrir.abrirTelaComDadosSeguros("telaAlteraSeguros.fxml","Voyage - Alterar seguro "+seguroSelecionado.getId(), dadosseguro);
                 
             } else if (linhaSelecionada instanceof Cliente) {
                 loginuser = usuario.getUsername();
@@ -338,7 +338,7 @@ public class telaAlteracoesController {
                 );
                 
                 abrirTelas abrir = new abrirTelas();
-                abrir.abrirTelaComDadosCliente("telaCliente.fxml","Voyage - Alterar Cliente "+clienteSelecionado.getId(), dadoscliente);
+                abrir.abrirTelaComDadosCliente("telaAlteraClientes.fxml","Voyage - Alterar Cliente "+clienteSelecionado.getId(), dadoscliente);
 
             }
         } else {

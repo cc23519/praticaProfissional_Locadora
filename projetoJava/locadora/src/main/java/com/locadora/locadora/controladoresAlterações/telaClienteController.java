@@ -104,6 +104,7 @@ public class telaClienteController {
     }
     
     public void AlterarCliente(){
+        loginuser = usuario.getUsername();
         String nome = textfieldNome.getText();
         String sobrenome = textfieldSobrenome.getText();
         String DDD = textfieldDDDTelefone.getText();
@@ -119,7 +120,7 @@ public class telaClienteController {
         
         alterarClientes alterar = new alterarClientes();
         
-        int resultado = alterar.alterarCliente(nome, sobrenome, tipo, DDD, telefone, rua, numero, bairro, cidade, estado, cep, complemento, id);
+        int resultado = alterar.alterarCliente(loginuser, nome, sobrenome, tipo, DDD, telefone, rua, numero,bairro, cidade, estado, cep, complemento, id);
         
                 switch (resultado) {
             case 0:

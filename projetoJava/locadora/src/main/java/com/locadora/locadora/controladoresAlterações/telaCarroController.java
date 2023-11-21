@@ -1,7 +1,10 @@
 package com.locadora.locadora.controladoresAlterações;
 
 import com.locadora.locadora.Carro;
+import com.locadora.locadora.ClassesAlterações.alterarCarros;
+import com.locadora.locadora.ClassesAlterações.alterarSeguros;
 import com.locadora.locadora.usuario;
+import java.math.BigDecimal;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,13 +13,13 @@ import javafx.stage.Stage;
 
 public class telaCarroController {
 
-    private String loginuser; 
-    private Integer id;
-    private String modelo;
-    private String placa;
-    private String ano;
-    private String chassi;
-    private String valor;
+    public String loginuser; 
+    public Integer id;
+    public String modelo;
+    public String placa;
+    public String ano;
+    public String chassi;
+    public String valor;
     
     @FXML
     public TextField textfieldChassiCarro;
@@ -48,8 +51,14 @@ public class telaCarroController {
             Stage stage = (Stage) buttonSair.getScene().getWindow();
             stage.close();
         });
+        
+        buttonFinalizarCarro.setOnAction(event -> {
+            AlterarCarro();
+        });
     }
 
+
+    
     @FXML
     public void inicializarDadosCarro(Object... dadosCarro) {
         if (dadosCarro.length > 0 && dadosCarro[0] instanceof Carro) {
@@ -58,10 +67,48 @@ public class telaCarroController {
             id = carro.getId();
             modelo = carro.getModelo();
             placa = carro.getPlaca();
-            ano = carro.getAno();
             chassi = carro.getChassi();
             valor = carro.getValor();
+            
+            inserirDados(chassi, placa, modelo, valor);
         }
     }  
+    public void inserirDados(String chassi, String placa, String modelo, String valor){
+        textfieldChassiCarro.setText(chassi);
+        textfieldPlacaCarro.setText(placa);
+        textfieldModeloCarro.setText(modelo);
+        textfieldPrecoCarro.setText(valor);
+    }
+    
+    public void AlterarCarro(){
+        loginuser = usuario.getUsername();
+        String novochassi = textfieldChassiCarro.getText();
+        String novoplaca = textfieldPlacaCarro.getText();
+        String novomodelo = textfieldModeloCarro.getText();
+        String novopreco = textfieldPrecoCarro.getText();
+        
+        BigDecimal preco = new BigDecimal(novopreco);
+        
+        alterarCarros alterar = new alterarCarros();
+        Integer resultados = alterar.alterarCarro(loginuser,id, novochassi, novoplaca, novomodelo, preco);
+        
+        System.out.println(resultados);
+        
+        switch (resultados) {
+            case 0:
+                statusCarro.setVisible(true);
+                statusCarro.setText("Você não tem acesso de moderador para realizar alteração de seguros.");
+                break;
+            case 4:
+                statusCarro.setVisible(true);
+                statusCarro.setText("Alteração realizada com sucesso.");
+                break;
+            default:
+                statusCarro.setVisible(true);
+                statusCarro.setText("Ocorreu um erro.");
+                break;
+        }
+    }
 }
+
 

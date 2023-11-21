@@ -20,7 +20,7 @@ public class Cliente {
     private String cep;
     private String complemento;
 
-    public Cliente(int id, String nome, String cpf, String tipoTelefone, String telefone, String endereco1, String endereco2, String numero1, String bairro1, String cidade1, String estado1, String cep1, String complemento1) {
+    public Cliente(int id, String nome, String cpf, String tipoTelefone, String telefone, String endereco1, String endereco2, String telefone2, String bairro1, String cidade1, String estado1, String cep1, String complemento1) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -47,6 +47,16 @@ public class Cliente {
         this.complemento = complemento;
     }
 
+    public Cliente(int id, String nome, String cpf, String tipoTelefone, String telefone, String endereco1, String endereco2) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.tipoTelefone = tipoTelefone;
+        this.telefone = telefone;
+        this.endereco1 = endereco1;
+        this.endereco2 = endereco2;
+    }
+    
     public String getDdd() {
         return ddd;
     }

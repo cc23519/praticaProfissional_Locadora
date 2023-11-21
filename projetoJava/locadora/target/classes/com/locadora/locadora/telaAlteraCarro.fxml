@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="169.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.controladoresAlterações.telaCarroController">
    <top>
       <GridPane prefHeight="34.0" prefWidth="482.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -42,7 +42,7 @@
                   <HBox spacing="10.0">
                      <children>
                         <Label text="Chassi" />
-                        <TextField prefHeight="25.0" prefWidth="217.0" />
+                        <TextField fx:id="textfieldChassiCarro" prefHeight="25.0" prefWidth="217.0" />
                      </children>
                   </HBox>
                   <HBox>
@@ -51,7 +51,7 @@
                            <padding>
                               <Insets right="10.0" />
                            </padding></Label>
-                        <TextField prefHeight="25.0" prefWidth="115.0" />
+                        <TextField fx:id="textfieldPlacaCarro" prefHeight="25.0" prefWidth="115.0" />
                      </children>
                   </HBox>
                </children>
@@ -61,7 +61,7 @@
                   <HBox spacing="10.0">
                      <children>
                         <Label text="Modelo" />
-                        <TextField prefHeight="25.0" prefWidth="405.0" />
+                        <TextField fx:id="textfieldModeloCarro" prefHeight="25.0" prefWidth="405.0" />
                      </children>
                   </HBox>
                </children>
@@ -75,7 +75,7 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="62.0" />
+                        <TextField fx:id="textfieldAnoCarro" prefHeight="25.0" prefWidth="62.0" />
                      </children>
                   </HBox>
                   <HBox>
@@ -85,14 +85,15 @@
                               <Insets right="10.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="70.0" />
+                        <TextField fx:id="textfieldPrecoCarro" prefHeight="25.0" prefWidth="70.0" />
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" text="Finalizar alteração">
+                  <Button fx:id="buttonFinalizarCarro" mnemonicParsing="false" text="Finalizar alteração">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="buttonSair" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Sair" />
                </children>
             </HBox>
             <HBox spacing="10.0">
@@ -112,4 +113,19 @@
          </BorderPane.margin>
       </VBox>
    </center>
+   <bottom>
+      <GridPane style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="51.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.0" minWidth="10.0" prefWidth="432.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Status: " GridPane.halignment="RIGHT" />
+            <Label fx:id="statusCarro" prefHeight="17.0" prefWidth="427.0" text="..." GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+   </bottom>
 </BorderPane>

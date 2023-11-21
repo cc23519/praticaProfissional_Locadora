@@ -3,6 +3,8 @@ package com.locadora.locadora.controladoresAlterações;
 import com.locadora.locadora.ClassesAlterações.alterarSeguros;
 import com.locadora.locadora.Seguro;
 import com.locadora.locadora.usuario;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,7 +57,7 @@ public class telaSeguroController {
             preco = seguro.getPreco();
             descricao = seguro.getDescricao();
             
-            inserirDados(tipo, preco, descricao);
+            inserirDados(tipo, descricao, preco);
         }
      
     }  
@@ -67,14 +69,15 @@ public class telaSeguroController {
     }
     
     public void AlterarSeguro(){
+        loginuser = usuario.getUsername();
         String novotipo = textfieldTipoSeguro.getText();
         String novodescricao = textfielddescricaoSeguro.getText();
-        String novopreco = textfielddescricaoSeguro.getText();
+        String novopreco = textfieldPrecoSeguro.getText();
         
-        Integer novoprecoint = Integer.valueOf(novopreco);
+        BigDecimal preco = new BigDecimal(novopreco);
         
         alterarSeguros alterar = new alterarSeguros();
-        Integer resultados = alterar.alterarSeguro(novotipo,novodescricao, novoprecoint, id);
+        Integer resultados = alterar.alterarSeguro(loginuser,novotipo, novodescricao, preco, id);
         
         System.out.println(resultados);
         
@@ -85,7 +88,7 @@ public class telaSeguroController {
                 break;
             case 4:
                 statusSeguro.setVisible(true);
-                statusSeguro.setText("Exclusão realizada com sucesso.");
+                statusSeguro.setText("Alteração realizada com sucesso.");
                 break;
             default:
                 statusSeguro.setVisible(true);
