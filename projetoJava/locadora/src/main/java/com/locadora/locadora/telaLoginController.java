@@ -32,8 +32,8 @@ public class telaLoginController {
                 Stage telaLoginStage = (Stage) buttonEntrar.getScene().getWindow();
                 telaLoginStage.close();
                 abrirTelas abrirTelas = new abrirTelas();
-                String tela = "telaConsultaExcluir.fxml";
-                abrirTelas.abrirTela(tela, "Voyage - Excluir");
+                String tela = "telaMenu.fxml";
+                abrirTelas.abrirTela(tela, "Voyage - Menu");
                 System.out.println("Autenticação bem-sucedida");
             } else {
                 Alert alert = new Alert(AlertType.ERROR);

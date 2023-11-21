@@ -227,44 +227,45 @@ public class telaExcluirController {
         tabExclusao.getSelectionModel().select(tab);
     }
 
-    @FXML
-    public void preencherTabelaClientes(Connection connection, TableView<Cliente> tabela) {
-        List<Cliente> clientes = new ArrayList<>();
+@FXML
+public void preencherTabelaClientes(Connection connection, TableView<Cliente> tabela) {
+    List<Cliente> clientes = new ArrayList<>();
 
-        String sql = "SELECT * from VconsultaClientes";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+    String sql = "SELECT * from VconsultaClientes";
+    try (PreparedStatement statement = connection.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
 
-            while (resultSet.next()) {
-                textStatus.setVisible(true);
-                textStatus.setText("Realizando consulta...");
-                int id = resultSet.getInt("idClientes");
-                String nome = resultSet.getString("NomeCompleto");
-                String cpf = resultSet.getString("cpfCliente");
-                String tipoTelefone = resultSet.getString("tipoTelefone");
-                String telefone = resultSet.getString("contatoCliente");
-                String endereco1 = resultSet.getString("Endereço1");
-                String endereco2 = resultSet.getString("Endereco2");
-
-                Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2);
-                clientes.add(cliente);
-            }
-            tabela.setItems(FXCollections.observableArrayList(clientes));
-            colunmidCliente.setCellValueFactory(new PropertyValueFactory<>("id"));
-            colunmnomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            columncpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-            colunmtipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoTelefone"));
-            colunmtelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
-            colunmendereco1Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco1"));
-            colunmendereco2Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco2"));
+        while (resultSet.next()) {
             textStatus.setVisible(true);
-            textStatus.setText("Consulta realizada");
-        } catch (SQLException e) {
-            textStatus.setVisible(true);
-            textStatus.setText("Ocorreu um erro: " + e);
+            textStatus.setText("Realizando consulta...");
+            int id = resultSet.getInt("idClientes");
+            String nome = resultSet.getString("NomeCompleto");
+            String cpf = resultSet.getString("cpfCliente");
+            String tipoTelefone = resultSet.getString("tipoTelefone");
+            String telefone = resultSet.getString("contatoCliente");
+            String endereco1 = resultSet.getString("Endereço1");
+            String endereco2 = resultSet.getString("Endereco2");
+
+
+            Cliente cliente = new Cliente(id, nome, cpf, tipoTelefone, telefone, endereco1, endereco2);
+            clientes.add(cliente);
         }
+        tabela.setItems(FXCollections.observableArrayList(clientes));
+        colunmidCliente.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colunmnomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columncpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        colunmtipoCliente.setCellValueFactory(new PropertyValueFactory<>("tipoTelefone"));
+        colunmtelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        colunmendereco1Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco1"));
+        colunmendereco2Cliente.setCellValueFactory(new PropertyValueFactory<>("endereco2"));
+        textStatus.setVisible(true);
+        textStatus.setText("Consulta realizada");
+    } catch (SQLException e) {
+        textStatus.setVisible(true);
+        textStatus.setText("Ocorreu um erro: " + e);
     }
-    
+}
+
     @FXML
     public void preencherTabelaCarro(Connection connection, TableView<Carro> tabela) {
         List<Carro> carros = new ArrayList<>();

@@ -1,5 +1,5 @@
 -- EXCLUSÃO DE CARROS
-ALTER PROCEDURE stExcluirCarros
+CREATE PROCEDURE stExcluirCarros
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -42,7 +42,7 @@ END
 
 
 -- EXCLUSÃO DE SEGUROS
-ALTER PROCEDURE stExcluirSeguros
+CREATE PROCEDURE stExcluirSeguros
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -87,7 +87,7 @@ BEGIN
 END
 
 -- EXCLUSÃO DE CLIENTES
-alter PROCEDURE stExcluirClientes
+CREATE PROCEDURE stExcluirClientes
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -133,7 +133,7 @@ BEGIN
 END
 
 -- EXCLUSÃO DE LOCAÇÕES ATIVAS
-ALTER PROCEDURE stExcluirLocacoes
+CREATE PROCEDURE stExcluirLocacoes
     @usuario VARCHAR(15),
     @idexclusao INT,
     @resultado INT OUTPUT
@@ -165,3 +165,154 @@ BEGIN
 END
 
 
+
+
+
+
+ALTER PROCEDURE stAlterarClientes
+    @usuario VARCHAR(15),
+    @idexclusao INT,
+    @nome varchar(30),
+    @sobrenome varchar(30),
+    @tipotelefone varchar(10),
+    @ddd varchar(2),
+    @numero varchar(11),
+    @rua varchar(30),
+    @numerocasa varchar(5),
+    @bairro varchar(30),
+    @cidade varchar(15),
+    @estado varchar(15),
+    @cep varchar(8),
+    @complemento varchar(40),
+    @resultado INT OUTPUT
+AS 
+BEGIN
+    DECLARE @tipoacesso INT;
+    DECLARE @id INT;
+    
+    SELECT @tipoAcesso = c.tipoAcesso
+    FROM esquemaLocadora.tabelaColaborador c
+    INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+    WHERE cc.usuarioColab = @usuario; 
+
+    IF @tipoacesso = 1
+    BEGIN
+        PRINT 'ACESSO NEGADO';
+        SET @resultado = 0;
+        RETURN @resultado; -- Retorne um código de acesso negado
+    END
+    ELSE
+    BEGIN
+        PRINT 'ACESSO PERMITIDO';
+        BEGIN
+            UPDATE esquemaLocadora.tabelaCliente SET 
+                nomeCliente = @nome,
+                sobrenomeCliente = @sobrenome
+            WHERE idClientes = @idexclusao;
+
+            UPDATE esquemaLocadora.tabelaClienteEndereco SET 
+                ruaCliente = @rua,
+                numeroCliente = @numerocasa,
+                bairroCliente = @bairro,
+                cidadeCliente = @cidade,
+                estadoCliente = @estado,
+                cepCliente = @cep,
+                complemento = @complemento
+            WHERE FK_idClienteEndereco = @idexclusao;
+
+            UPDATE esquemaLocadora.tabelaClienteContatos SET 
+                tipoTelefone = @tipotelefone,
+                dddTelefone = @ddd,
+                numeroTelefone = @numero
+            WHERE FK_idClienteContatos = @idexclusao;
+
+            PRINT 'Alteração Realizada';
+            SET @resultado = 4;
+            RETURN @resultado; -- Retorne um código de alteração realizada
+        END
+    END
+END
+
+
+ALTER PROCEDURE stAlterarCarros
+    @usuario VARCHAR(15),
+    @idexclusao INT,
+    @chassi VARCHAR(17),
+    @placa varchar(7),
+    @modelo varchar(30),
+    @valor money,
+    @resultado INT OUTPUT
+AS 
+BEGIN
+    DECLARE @tipoacesso INT;
+    DECLARE @id INT;
+    
+    SELECT @tipoAcesso = c.tipoAcesso
+    FROM esquemaLocadora.tabelaColaborador c
+    INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+    WHERE cc.usuarioColab = @usuario; 
+
+    IF @tipoacesso = 1
+    BEGIN
+        PRINT 'ACESSO NEGADO';
+        SET @resultado = 0;
+        RETURN @resultado; -- Retorne um código de acesso negado
+    END
+    ELSE
+    BEGIN
+        PRINT 'ACESSO PERMITIDO';
+        BEGIN
+            UPDATE esquemaLocadora.tabelaCarro SET 
+                chassiCarro = @chassi, 
+                placaCarro = @placa,
+                modeloCarro = @modelo,
+                precoDiaria_Carro = @valor
+            WHERE idCarro = @idexclusao;
+
+            PRINT 'Alteração Realizada';
+            SET @resultado = 4;
+            RETURN @resultado; -- Retorne um código de alteração realizada
+        END
+    END
+END
+
+
+ -- Alterar Seguros
+ALTER PROCEDURE stAlterarSeguros
+    @usuario VARCHAR(15),
+    @idexclusao INT,
+    @tipo VARCHAR(30),
+    @descricao varchar(50),
+    @preco money,
+    @resultado INT OUTPUT
+AS 
+BEGIN
+    DECLARE @tipoacesso INT;
+    DECLARE @id INT;
+    
+    SELECT @tipoAcesso = c.tipoAcesso
+    FROM esquemaLocadora.tabelaColaborador c
+    INNER JOIN esquemaLocadora.tabelaColaboradorCred cc ON c.idColaborador = cc.FK_idColaborador
+    WHERE cc.usuarioColab = @usuario; 
+
+    IF @tipoacesso = 1
+    BEGIN
+        PRINT 'ACESSO NEGADO';
+		SET @resultado = 0;
+        RETURN @resultado; -- Retorne um código de acesso negado
+    END
+    ELSE
+    BEGIN
+        PRINT 'ACESSO PERMITIDO';
+        BEGIN
+            UPDATE esquemaLocadora.tabelaSeguros 
+            SET tipoSeguro = @tipo,
+            descricaoSeguro = @descricao,
+            precoSeguro = @preco
+            WHERE idSeguro = @idexclusao;
+            PRINT 'Alteração Realizada';
+			SET @resultado = 4;
+			RETURN @resultado; -- Retorne um código de alteração realizada
+        END
+    END
+END
