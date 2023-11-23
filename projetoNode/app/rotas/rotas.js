@@ -1,10 +1,23 @@
 const express = require('express');
 const app = express();
+const { conectarBanco, queryDatabase } = require('./db/database');
 
 module.exports = (app) => {
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
         next();
+    });
+
+    app.get('/', async (req, res) => {
+        let sql;
+
+        try {
+            await conectarBanco(); 
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+        } finally {
+            res.render("loginUsuario.ejs");
+        }
     });
 
     app.set('view engine', 'ejs');
