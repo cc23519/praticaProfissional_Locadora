@@ -23,6 +23,24 @@ body::before{
     background: #65B5E2;
 }
 
+.notificacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.notificacao.hidden {
+    display: none;
+}
+
 .pagina{
     width: 790px;
     margin: auto;
