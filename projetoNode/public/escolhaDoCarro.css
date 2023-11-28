@@ -71,7 +71,6 @@ body {
     width: 300px;
     position: absolute;
     font-family:Inria Sans;
-    right: 565px;
     top: 226px;
   }
 
@@ -173,9 +172,9 @@ body {
   }
 
   .carrosCategoria{
-    font-size: 18px;
+    font-size: 35px;
     color: #535255;
-    margin: 0;
+    margin: 10px;
   }
 
   .kms{
@@ -183,6 +182,86 @@ body {
     color: red;
     margin: 5px 0px 20px 0px;
   }
+
+  .selectValorDiaria {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    cursor: pointer;
+    margin: 14px auto;
+    display: block; 
+  }
+
+  .valorDiariaTotal{
+    border: 0 solid #65B5E2;
+    font-size: 16px;
+    color: #65B5E2;
+    background-color: #fff;
+    padding: 8px 16px;
+    box-shadow: 0px 0px 10px #65B5E2;
+    border-radius: 86px;
+    margin: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .opcoesAdicionaisLocacao{
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 140px 176px 0 0;
+      margin: 0 auto;
+  }
+
+  .textoInformativo{
+    text-align: center;
+    color: #65B5E2;
+}
+
+.selectSeguro {
+  margin: 14px auto;
+}
+
+.selectSeguro select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px; /* Ajuste conforme necessário */
+  cursor: pointer;
+}
+
+.checkbox-wrapper{
+    border: 0;
+    box-shadow: 0px 0px 10px #65B5E2;
+    border-radius: 86px;
+    background-color: #fff;
+    padding: 10px 18px;
+    margin: 8px 0;
+    color: #65B5E2;
+    font-size: large;
+}
+
+.checkbox-wrapper label{
+    cursor: pointer;
+}
+
+.checkbox-wrapper input{
+    display: none;
+}
+
+.checkbox-wrapper:has(input:checked) {
+    background-color: #65B5E2;
+    color: #fff;
+}
+
+.total-container{
+  font-size: 40px;
+  text-align: center;
+}
 
   #linha{
     width: 80%;
@@ -203,6 +282,26 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
   }
+
+  .buttonfinalizar {
+    border: 0 solid #65B5E2;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 16px;
+    background-color: #65B5E2;
+    box-shadow: 0px 0px 10px #65B5E2;
+    border-radius: 86px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 14px auto;
+    display: block; 
+    max-width: 200px; 
+  }
+  
+  .buttonfinalizar:hover {
+    background: #68c3f7;
+  }
+  
 
   .button:hover{
     background: #68c3f7;

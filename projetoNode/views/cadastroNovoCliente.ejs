@@ -18,12 +18,12 @@
                 <img src="/img/logo.png" alt="Logo LocaCar" />
             </a>
         </nav>
-        
+     
         <header>
             <h1>Seja bem-vinda(o)!</h1>
             <p>Para começar, realize seu cadastro.</p>
         </header>
-        <form id="formularioCadastroNovoCliente">
+        <form id="formularioCadastroNovoCliente" method="POST" action="/cadastro">
             <fieldset>
                 <div class="fieldset-wrapper">
                     <legend>Preencha os campos com seus dados.</legend>
@@ -31,67 +31,68 @@
                     <div class="col-2">
                         <div class="input-wrapper">
                             <label for="nomeCliente">Nome</label>
-                            <input type="text" id="nomeCliente" required minlength="20" />
+                            <input type="text" id="nomeCliente" name="nomeCliente" required minlength="5" />
                         </div>
     
                         <div class="input-wrapper">
                             <label for="sobrenomeCliente">Sobrenome</label>
-                            <input type="text" id="sobrenomeCliente" required minlength="30" />
+                            <input type="text" id="sobrenomeCliente" name="sobrenomeCliente" required minlength="5" />
                         </div>
                     </div>
 
                     <div class="input-wrapper">
                         <label for="cpfCliente">CPF <span>(somente números)</span></label>
-                        <input type="number" id="cpfCliente" />
+                        <input type="text" id="cpfCliente" name="cpfCliente" />
                     </div>
 
                     <div class="col-3">
                         <div class="input-wrapper">
                             <label for="tipoContatoCliente">Tipo contato</label>
-                            <select id="tipoContatoCliente">
+                            <select id="tipoContatoCliente" name="tipoContatoCliente">
                                 <option value="whatsapp">WhatsApp</option>
-                                <option value="celular">Celular - ligação</option>
+                                <option value="celular">Celular</option>
+                                <option value="celular">Fixo</option>
                                 <option value="conhecido">Conhecido</option>
                             </select>
                         </div>
     
                         <div class="input-wrapper">
                             <label for="dddTelefone">DDD</label>
-                            <input type="number" id="dddTelefone" />
+                            <input type="text" id="dddTelefone" name="dddTelefone" />
                         </div>
 
                         <div class="input-wrapper">
                             <label for="numeroTelefone">Telefone</label>
-                            <input type="number" id="numeroTelefone" />
+                            <input type="text" id="numeroTelefone" name="numeroTelefone" />
                         </div>
                     </div>
 
                     <div class="col-3">
                         <div class="input-wrapper">
                             <label for="enderecoCliente">Endereço</label>
-                            <input type="text" id="enderecoCliente" />
+                            <input type="text" id="enderecoCliente" name="enderecoCliente" />
                         </div>
     
                         <div class="input-wrapper">
                             <label for="numeroEnderecoCliente">Número</label>
-                            <input type="number" id="numeroEnderecoCliente" />
+                            <input type="text" id="numeroEnderecoCliente" name="numeroEnderecoCliente" />
                         </div>
 
                         <div class="input-wrapper">
                             <label for="bairroCliente">Bairro</label>
-                            <input type="text" id="bairroCliente" />
+                            <input type="text" id="bairroCliente" name="bairroCliente" />
                         </div>
                     </div>
 
                     <div class="col-3">
                         <div class="input-wrapper">
                             <label for="cidadeCliente">Cidade</label>
-                            <input type="text" id="cidadeCliente" />
+                            <input type="text" id="cidadeCliente" name="cidadeCliente" />
                         </div>
     
                         <div class="input-wrapper">
                             <label for="estadoCliente">Estado</label>
-                            <select id="estadoCliente">
+                            <select id="estadoCliente" name="estadoCliente">
                                 <option value="ac">Acre</option>
                                 <option value="ap">Amapá</option>
                                 <option value="am">Amazonas</option>
@@ -120,15 +121,22 @@
                                 <option value="ms">Mato Grosso do Sul  </option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="input-wrapper">
+                            <label for="cepCliente">CEP</label>
+                            <input type="text" id="cepCliente" name="cepCliente" />
+                        </div>
 
                         <div class="input-wrapper">
                             <label for="complementoCliente">Complemento</label>
-                            <input type="text" id="complementoCliente" />
+                            <input type="text" id="complementoCliente" name="complementoCliente" />
                         </div>
                     </div>
                     <div class="input-wrapper">
                         <label for="anexoCnh">CNH</label>
-                        <input type="file" id="anexoCnh" />
+                        <input type="text" id="cnhCliente" name="cnhCliente" />
                     </div>
 
                 </div>
@@ -140,18 +148,14 @@
 
                     <div class="input-wrapper">
                         <label for="emailCliente">E-mail <span>(digite um e-mail válido)</span></label>
-                        <input type="text" id="emailCliente" />
+                        <input type="email" id="emailCliente" name="emailCliente" />
                     </div>
 
                     <div class="input-wrapper">
                         <label for="senhaCliente">Senha de acesso <span>(mínimo 8 caracteres)</span></label>
-                        <input type="password" id="senhaCliente" minlength="8" />
+                        <input type="password" id="senhaCliente" name="senhaCliente" minlength="8" />
                     </div>
 
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="salvarEmailESenha" />
-                        <label for="salvarEmailESenha">Salvar e-mail e senha</label>
-                    </div>
 
                 </div>
             </fieldset>

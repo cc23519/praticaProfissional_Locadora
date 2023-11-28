@@ -17,7 +17,7 @@ CREATE TABLE esquemaLocadora.tabelaColaborador (
 CREATE TABLE esquemaLocadora.tabelaColaboradorCred (
     FK_idColaborador INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
     usuarioColab varchar(15) NOT NULL UNIQUE,
-    senhaColab varchar(60) NOT NULL,
+    senhaColab varchar(200) NOT NULL,
 );
 
 CREATE TABLE esquemaLocadora.tabelaCliente (
@@ -48,7 +48,7 @@ CREATE TABLE esquemaLocadora.tabelaClienteEndereco (
 CREATE TABLE esquemaLocadora.tabelaClienteCredenciais (
     FK_idClienteCred INT IDENTITY(1,1) PRIMARY KEY,
     emailCliente varchar(30) NOT NULL UNIQUE,
-    senhaCliente varchar(30) NOT NULL
+    senhaCliente varchar(200) NOT NULL
 );
 
 CREATE TABLE esquemaLocadora.tabelaCarro (
@@ -59,7 +59,8 @@ CREATE TABLE esquemaLocadora.tabelaCarro (
     anoCarro varchar(4) NOT NULL,
     precoDiaria_Carro money NOT NULL,
     status varchar(10) NOT NULL,
-    UNIQUE (chassiCarro, placaCarro)
+    UNIQUE (chassiCarro, placaCarro),
+	link_imagem VARCHAR(255)
 );
 
 CREATE TABLE esquemaLocadora.tabelaSeguros (

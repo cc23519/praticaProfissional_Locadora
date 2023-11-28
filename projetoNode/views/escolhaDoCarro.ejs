@@ -1,189 +1,180 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/img/logoParaAba.svg" />
-    <title>LocaCar: Escolha um carro</title>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/img/logoParaAba.svg" />
+  <title>LocaCar: Escolha um carro</title>
+  <link href="https://fonts.googleapis.com/css?family=Inria+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="swiper.min.css">
+  <link rel="stylesheet" href="escolhaDoCarro.css">
+</head>
 
-    <link href="https://fonts.googleapis.com/css?family=Inria+Sans&display=swap" rel="stylesheet">
+<body>
+  <div id="pagina">
+    <nav>
+      <a id="logo" href="/login">
+        <img src="/img/logo.png" alt="Logo LocaCar" />
+      </a>
+      <ul>
+        <li><a href="#">Fale Conosco</a></li>
+      </ul>
+    </nav>
 
-    <link rel="stylesheet" href="swiper.min.css">
-    <link rel="stylesheet" href="escolhaDoCarro.css">
-
-  </head>
-  <body>
-    <div id="pagina">
-        <nav>
-            <a id="logo" href="/login">
-                <img src="/img/logo.png" alt="Logo LocaCar" />
-            </a>
-            <ul>
-                <li><a href="#">Fale Conosco</a></li>
-                <li><a id="nomeCliente"href="#">@nomeCliente</a></li>
-            </ul>
-        </nav>
-      
-        <div class="escolhaLocalDatasHorario">
-            <h1>ESCOLHA O SEU CARRO</h1>
-            <div class="col-6">
-                <div class="input-wrapper">
-                    <label for="localRetiradaVeiculo">Local retirada veículo</label>
-                    <select id="localRetiradaVeiculo">
-                        <option value="eaton">EATON</option>
-                        <option value="polis">Polis Tecnologico</option>
-                        <option value="ambev">Ambev Tech</option>
-                        <option value="sidi">Sidi</option>
-                        <option value="activy">Activy</option>
-                    </select>
-                </div>
-
-                <div class="input-wrapper">
-                    <label for="diaRetirada">Dia retirada</label>
-                    <input type="date" id="diaRetirada" />
-                </div>
-
-                <div class="input-wrapper">
-                    <label for="horaRetirada">Hora retirada</label>
-                    <input type="time" id="horaRetirada" />
-                </div>
-
-                <div class="input-wrapper">
-                    <label for="localDevolucaoVeiculo">Local devolução veículo</label>
-                    <select id="localDevolucaoVeiculo">
-                        <option value="eaton">EATON</option>
-                        <option value="polis">Polis Tecnologico</option>
-                        <option value="ambev">Ambev Tech</option>
-                        <option value="sidi">Sidi</option>
-                        <option value="activy">Activy</option>
-                    </select>
-                </div>
-
-                <div class="input-wrapper">
-                    <label for="diaDevolucao">Dia devolução</label>
-                    <input type="date" id="diaDevolucao" />
-                </div>
-
-                <div class="input-wrapper">
-                    <label for="horaDevolucao">Hora devolução</label>
-                    <input type="time" id="horaDevolucao" />
-                </div>
-            </div>
+    <div class="escolhaLocalDatasHorario">
+      <h1>ESCOLHA O SEU CARRO</h1>
+      <div class="col-6">
+        <div class="input-wrapper">
+          <label for="diaRetirada">Dia retirada</label>
+          <input type="date" id="diaRetirada" />
         </div>
 
-        <div class="slide-container swiper">
-            <div class="slide-content">
-                <div class="card-wrapper swiper-wrapper">
-                    <div class="card swiper-slide">
-                        <div class="card-content">
-                            <h2 class="grupo">Grupo AB</h2>
-                            <p class="carrosCategoria">Jeep Renegade</p>
-                            <p class="kms">Quilometragem livre</p>
-                            <div id="linha"></div>
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="/img/jeep.png" class="card-img"/>
-                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
-                                </div>
-                            </div>
-                            <div id="linha"></div>
-                            <button class="button">Valor R$ @diarias</button>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-content">
-                            <h2 class="grupo">Grupo CD</h2>
-                            <p class="carrosCategoria">Virtus</p>
-                            <p class="kms">Quilometragem livre</p>
-                            <div id="linha"></div>
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="/img/virtus.png" class="card-img"/>
-                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
-                                </div>
-                            </div>
-                            <div id="linha"></div>
-                            <button class="button">Valor R$ @diarias</button>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-content">
-                            <h2 class="grupo">Grupo EF</h2>
-                            <p class="carrosCategoria">Ford Ka</p>
-                            <p class="kms">Quilometragem livre</p>
-                            <div id="linha"></div>
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="/img/fordKa.png" class="card-img"/>
-                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
-                                </div>
-                            </div>
-                            <div id="linha"></div>
-                            <button class="button">Valor R$ @diarias</button>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-content">
-                            <h2 class="grupo">Grupo GH</h2>
-                            <p class="carrosCategoria">HB20</p>
-                            <p class="kms">Quilometragem livre</p>
-                            <div id="linha"></div>
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="/img/hb20.png" class="card-img"/>
-                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
-                                </div>
-                            </div>
-                            <div id="linha"></div>
-                            <button class="button">Valor R$ @diarias</button>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-content">
-                            <h2 class="grupo">Grupo IJ</h2>
-                            <p class="carrosCategoria">Kicks</p>
-                            <p class="kms">Quilometragem livre</p>
-                            <div id="linha"></div>
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="/img/Kicks.png" class="card-img"/>
-                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
-                                </div>
-                            </div>
-                            <div id="linha"></div>
-                            <button class="button">Valor R$ @diarias</button>
-                        </div>
-                    </div>
-
-                    <div class="card swiper-slide">
-                        <div class="card-content">
-                            <h2 class="grupo">Grupo KL</h2>
-                            <p class="carrosCategoria">Polo</p>
-                            <p class="kms">Quilometragem livre</p>
-                            <div id="linha"></div>
-                            <div class="image-content">
-                                <div class="card-image">
-                                    <img src="/img/polo.png" class="card-img"/>
-                                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
-                                </div>
-                            </div>
-                            <div id="linha"></div>
-                            <button class="button">Valor R$ @diarias</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-button-pagination"></div>
+        <div class="input-wrapper">
+          <label for="diaDevolucao">Dia devolução</label>
+          <input type="date" id="diaDevolucao" />
         </div>
+      </div>
     </div>
-  </body>
-  <script src="swiper.min.js"></script>
-  <script src="carrossel.js"></script>
+
+    <div class="slide-container swiper">
+      <div class="slide-content">
+        <div class="card-wrapper swiper-wrapper">
+          <% carros.forEach(function(car) { %>
+            <div class="card swiper-slide">
+              <div class="card-content">
+                <p class="carrosCategoria">
+                  <%= car.modeloCarro %>
+                </p>
+                <div id="linha"></div>
+                <div class="image-content">
+                  <div class="card-image">
+                    <img src="<%= car.link_imagem %>" class="card-img" />
+                    <p class="imagemIlustrativa">Imagem ilustrativa</p>
+                  </div>
+                </div>
+                <div id="linha"></div>
+                <button class="button" data-diaria="<%= car.precoDiaria_Carro %>">Valor R$ <%= car.precoDiaria_Carro %>
+                </button>
+              </div>
+            </div>
+            <% }); %>
+        </div>
+      </div>
+      <div class="swiper-button-pagination"></div>
+    </div>
+
+    <div class="opcoesAdicionaisLocacao">
+      <h2 class="textoInformativo">Deixe seu aluguel ainda mais completo</h2>
+      <div class="selectSeguro">
+        <select name="seguros" id="selectSeguros">
+          <% seguros.forEach(function(seguro) { %>
+            <option value="<%= seguro.idSeguro %>">
+              <%= seguro.tipoSeguro %> - R$ <%= seguro.precoSeguro %>/dia
+            </option>
+            <% }); %>
+        </select>
+      </div>
+
+      <select class="selectValorDiaria" id="selectValorDiaria">
+        <% carros.forEach(function(car) { %>
+          <option value="<%= car.idCarro %>">
+            <%= car.modeloCarro %> - R$ <%= car.precoDiaria_Carro %>
+          </option>
+          <% }); %>
+      </select>
+
+
+      <div class="total-container">
+        <p>Total: R$ <span id="total">0.00</span></p>
+      </div>
+
+      <button class="buttonfinalizar" onclick="finalizarLocacao()">Finalizar Locação</button>
+    </div>
+
+    <script src="swiper.min.js"></script>
+    <script src="carrossel.js"></script>
+    <script>
+      var total
+      function calcularTotal() {
+        var selectCarro = document.getElementById('selectValorDiaria');
+        var selectSeguros = document.getElementById('selectSeguros');
+        var totalElement = document.getElementById('total');
+
+        var valorCarro = parseFloat(selectCarro.value);
+        var valorSeguro = parseFloat(selectSeguros.value);
+
+        var diasLocacao = calcularDiasLocacao();
+
+        var total = (valorCarro + valorSeguro) * diasLocacao;
+
+        totalElement.textContent = total.toFixed(2);
+
+        return total;
+      }
+
+      function calcularDiasLocacao() {
+        var diaRetirada = new Date(document.getElementById('diaRetirada').value);
+        var diaDevolucao = new Date(document.getElementById('diaDevolucao').value);
+
+        var diferencaEmMS = diaDevolucao - diaRetirada;
+
+        var diasLocacao = diferencaEmMS / (1000 * 60 * 60 * 24);
+
+        return diasLocacao;
+      }
+
+      function calcularTotalAutomaticamente() {
+        calcularTotal();
+
+        var camposInput = document.querySelectorAll('input, select');
+        camposInput.forEach(function (campo) {
+          campo.addEventListener('input', function () {
+            calcularTotal();
+          });
+        });
+      }
+
+      function finalizarLocacao() {
+        var total = calcularTotal();
+        var diaRetirada = document.getElementById('diaRetirada').value;
+        var diaDevolucao = document.getElementById('diaDevolucao').value;
+        var selectValorDiaria = document.getElementById('selectValorDiaria');
+        var selectSeguros = document.getElementById('selectSeguros');
+
+        var idCarro = selectValorDiaria.value;
+        var idSeguro = selectSeguros.value;
+
+        var dadosLocacao = {
+          diaRetirada: diaRetirada,
+          diaDevolucao: diaDevolucao,
+          idCarro: idCarro,
+          idSeguro: idSeguro,
+          total: total
+        };
+
+        console.log(dadosLocacao);
+
+        fetch('/processar-dados-locacao', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dadosLocacao)
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Resposta da rota POST:', data);
+          })
+          .catch(error => {
+            console.error('Erro ao fazer a solicitação POST:', error);
+          });
+      }
+
+      window.onload = calcularTotalAutomaticamente;
+    </script>
+</body>
+
 </html>
