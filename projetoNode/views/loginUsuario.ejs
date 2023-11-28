@@ -27,16 +27,17 @@
       
         <div>
             <h1>Aluguel de carros descomplicado e rápido.</h1>
-            <form method="post" class="formularioDeLogin">
+            <form method="post" action="/loginClientes" class="formularioDeLogin">
                 <p>Faça seu login</p>
                 <label for="email">E-mail:</label>
-                <input type="email" placeholder="cc23502@g.unicamp.br"/>
+                <input type="email" name="email" placeholder="cc23502@g.unicamp.br"/>
                 <label for="password">Senha:</label>
-                <input type="password" placeholder="********" />
+                <input type="password" name="senha" placeholder="********" />
                 <a href="/esqueciMinhaSenha">Esqueci minha senha</a>
                 <input type="submit" value="Entrar" class="btn" />
-                <a id="aindaNaoSouCliente" href="#">Ainda não sou cliente</a>
+                <a id="aindaNaoSouCliente" href="/cadastroCliente">Ainda não sou cliente</a>
             </form>
+            
         </div>
         <div id="carroImagemInicial">
             <img src="/img/carroImagemInicial.png" alt="Carro Corolla, na cor preto."/>
