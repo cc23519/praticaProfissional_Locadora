@@ -1,36 +1,18 @@
-CREATE OR REPLACE FUNCTION verificarETransferirLocacoes()
-RETURNS TRIGGER AS $$
+CREATE TRIGGER trigger_verifica_locacao_ativa
+ON esquemaLocadora.tabelaLocacao_Ativa
+AFTER INSERT
+AS
 BEGIN
-    INSERT INTO esquemaLocadora.tabelaLocacao_Histórico
-    SELECT *
-    FROM esquemaLocadora.tabelaLocacao_Ativa
-    WHERE status = 'Ativa' AND dataFim < CURRENT_DATE;
 
-    DELETE FROM esquemaLocadora.tabelaLocacao_Ativa
-    WHERE status = 'Ativa' AND dataFim < CURRENT_DATE;
-
-    RETURN NULL;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE FUNCTION agendarVerificacaoDiaria()
-RETURNS TRIGGER AS $$
+IF (CURRENT_TIMESTAMP >= NEW.dataFim)
 BEGIN
-    PERFORM cron.schedule(
-        '0 0 * * *',
-        'SELECT verificarETransferirLocacoes()'
-    );
+UPDATE esquemaLocadora.tabelaLocacao_Ativa
+SET status = 'Finalizada'
+WHERE idLocacao = NEW.idLocacao;
 
-    RETURN NULL;
+INSERT INTO esquemaLocadora.tabelaLocacao_Historico
+(FK_idClienteLocacao, FK_idSeguroLocacao, FK_idCarroLocacao, dataCriacao, dataInicio, dataFim, valorTotal, status)
+SELECT NEW.FK_idClienteLocacao, NEW.FK_idSeguroLocacao, NEW.FK_idCarroLocacao, NEW.dataCriacao, NEW.dataInicio, NEW.dataFim, NEW.valorTotal, NEW.status;
 END;
-$$ LANGUAGE plpgsql;
 
-DO $$ BEGIN
-    IF NOT EXISTS (
-        SELECT 1
-        FROM pg_proc
-        WHERE proname = 'agendarVerificacaoDiaria'
-    ) THEN
-        PERFORM agendarVerificacaoDiaria();
-    END IF;
-END $$;
+END;
