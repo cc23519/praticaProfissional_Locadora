@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.controladoresAlterações.telaSeguroController">
+   <top>
+      <GridPane prefHeight="34.0" prefWidth="482.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="105.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="617.0" minWidth="10.0" prefWidth="398.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="25.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@imagens/logoVoyage.png" />
+               </image>
+            </ImageView>
+            <Label text="Seguros" GridPane.columnIndex="1">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+   </top>
+   <center>
+      <VBox prefHeight="125.0" prefWidth="432.0" spacing="10.0">
+         <children>
+            <HBox spacing="10.0">
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="Tipo Seguro" />
+                        <TextField fx:id="textfieldTipoSeguro" prefHeight="25.0" prefWidth="217.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="59.0" text="Descriçao" />
+                        <TextField fx:id="textfielddescricaoSeguro" prefHeight="25.0" prefWidth="405.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Preço Seguro">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="textfieldPrecoSeguro" prefHeight="25.0" prefWidth="62.0" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="buttonFinalizarSeguro" mnemonicParsing="false" text="Finalizar alteração">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="buttonSair" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Sair" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <HBox />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <HBox />
+               </children>
+            </HBox>
+            <HBox spacing="10.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <GridPane style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.0" minWidth="10.0" prefWidth="55.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="455.0" minWidth="10.0" prefWidth="437.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="20.0" prefWidth="45.0" text="Status:" GridPane.halignment="RIGHT" />
+            <Label fx:id="statusSeguro" prefHeight="17.0" prefWidth="434.0" text="..." GridPane.columnIndex="1" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </GridPane>
+   </bottom>
+</BorderPane>

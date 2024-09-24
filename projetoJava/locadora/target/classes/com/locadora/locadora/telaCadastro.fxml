@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.locadora.locadora.telaCadastroController">
+   <center>
+      <Accordion BorderPane.alignment="CENTER">
+        <panes>
+          <TitledPane fx:id="telaCarros" animated="false" text="Carros">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="11.0" layoutY="10.0" prefHeight="252.0" prefWidth="350.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextFlow>
+                                 <children>
+                                    <Label text="Modelo">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="inputModeloCarro" prefHeight="25.0" prefWidth="298.0" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="2">
+                                 <children>
+                                    <Label text="Ano">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="inputAnoCarro" promptText="20xx" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="1">
+                                 <children>
+                                    <Label text="Placa">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="inputPlacaCarro" promptText="xxxxxxx" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="3">
+                                 <children>
+                                    <Label text="Chassi">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="inputChassiCarro" promptText="xxxxxxxxxxxxxxxxx" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="4">
+                                 <children>
+                                    <Label text="Preço Diária">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="inputPrecoDiariaCarro" prefHeight="25.0" prefWidth="154.0" promptText="xx,xx" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="5">
+                                 <children>
+                                    <Button fx:id="buttonGerarCarro" mnemonicParsing="false" text="Criar Carro" />
+                                    <Label text="ID do Carro gerado: ">
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="labelIdCarro" text="-" />
+                                 </children>
+                              </TextFlow>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </TitledPane>
+            <TitledPane fx:id="telaSeguro" animated="false" text="Seguros">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="11.0" layoutY="14.0" prefHeight="219.0" prefWidth="354.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextFlow>
+                                 <children>
+                                    <Label text="Tipo Seguro">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="inputTipoSeguro" prefHeight="25.0" prefWidth="279.0" promptText="Ex. Seguro para passageiros" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="2">
+                                 <children>
+                                    <Label text="Descrição do Seguro">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextArea fx:id="inputDescricaoSeguro" prefHeight="86.0" prefWidth="200.0" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="1">
+                                 <children>
+                                    <Label text="Preço Seguro">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="inputPrecoSeguro" promptText="xx,xx" />
+                                 </children>
+                              </TextFlow>
+                              <TextFlow GridPane.rowIndex="3">
+                                 <children>
+                                    <Button fx:id="buttonGerarSeguro" mnemonicParsing="false" text="Criar Seguro" />
+                                    <Label text="ID do seguro gerado: ">
+                                       <padding>
+                                          <Insets left="25.0" right="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="labelIdSeguro" text="-">
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </TextFlow>
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
+               </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </center>
+   <top>
+      <Pane prefHeight="32.0" prefWidth="908.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane prefHeight="33.0" prefWidth="705.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="106.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="836.0" minWidth="10.0" prefWidth="599.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <image>
+                        <Image url="@imagens/logoVoyage.png" />
+                    </image>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                   </ImageView>
+                  <Label text="Cadastro " GridPane.columnIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+   </top>
+   <bottom>
+      <GridPane style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" prefWidth="51.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="664.0" minWidth="10.0" prefWidth="654.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="17.0" prefWidth="43.0" text="Status:" textFill="WHITE">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="labelStatus" disable="true" prefHeight="17.0" prefWidth="639.0" text="..." textFill="WHITE" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+   </bottom>
+</BorderPane>
